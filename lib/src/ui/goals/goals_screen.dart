@@ -39,7 +39,7 @@ class _GoalsScreenState extends State<GoalsScreen> {
         controller: _controller,
         searchHint: 'Trip, customer name or phone',
         emptyMessage: 'No goals match',
-        minWidth: 1050,
+        minWidth: 740,
         onTap: (g) async {
           await _shell.open(GoalDetailsScreen(uuid: g.uuid));
           _controller.load();
@@ -62,8 +62,11 @@ class _GoalsScreenState extends State<GoalsScreen> {
         columns: [
           TableColumn(
             'Trip',
-            (g) => TwoLineCell(g.title, g.itinerary_title),
-            size: ColumnSize.L,
+            // The itinerary line only adds information when the goal was renamed.
+            (g) => TwoLineCell(
+              g.title,
+              g.itinerary_title == g.title ? null : g.itinerary_title,
+            ),
           ),
           TableColumn(
             'Customer',
@@ -72,7 +75,7 @@ class _GoalsScreenState extends State<GoalsScreen> {
           TableColumn(
             'Status',
             (g) => StatusChip.goal(g.status),
-            size: ColumnSize.S,
+            fixedWidth: 110, // keeps the chip on one line
           ),
           TableColumn(
             'Progress',
@@ -85,17 +88,16 @@ class _GoalsScreenState extends State<GoalsScreen> {
             numeric: true,
             sortKey: 'total_amount',
           ),
-          TableColumn(
-            'Pay by',
-            (g) => Text(TimeUtil.formatDate(g.pay_by_date)),
-            sortKey: 'pay_by_date',
-            size: ColumnSize.S,
-          ),
+          // Travel and pay-by share a column so the table fits without scrolling.
           TableColumn(
             'Travel',
-            (g) => Text(TimeUtil.formatDate(g.travel_date)),
+            (g) => TwoLineCell(
+              TimeUtil.formatDate(g.travel_date),
+              "Pay by @date".trParams({
+                'date': TimeUtil.formatDate(g.pay_by_date),
+              }),
+            ),
             sortKey: 'travel_date',
-            size: ColumnSize.S,
           ),
           TableColumn(
             'Created',

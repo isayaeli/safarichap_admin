@@ -393,6 +393,7 @@ const Map<String, String> sw = {
   "Paused": "Imesimamishwa",
   "Pay": "Lipa",
   "Pay by": "Lipa kufikia",
+  "Pay by @date": "Lipa kufikia @date",
   "Payment": "Malipo",
   "Payment is now @status": "Malipo sasa yako @status",
   "Payment must be complete this many days before travel, unless the trip or operator says otherwise.":
