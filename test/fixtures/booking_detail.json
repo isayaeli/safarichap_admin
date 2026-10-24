@@ -1,0 +1,46 @@
+{
+  "uuid": "be1442a4-f00a-4488-b69d-27374659b622",
+  "confirmation_code": "SC-Y25AHH",
+  "status": "confirmed",
+  "travel_date": "2027-05-12",
+  "user": {
+    "uuid": "52dfbfb1-04f6-46b8-8454-545273eefdd4",
+    "full_name": "Asha Mushi",
+    "phone_number": "+255712345678",
+    "email": null
+  },
+  "goal_uuid": "4360eec4-d864-4752-99aa-1b6baf46ff4d",
+  "itinerary_title": "Tarangire Weekend",
+  "operator_name": "Kili Trails Safaris",
+  "travellers": 1,
+  "created_at": "2026-10-24T11:28:55.810604+03:00",
+  "documents": [
+    {
+      "uuid": "6d1696cd-e895-453b-bdb9-3d588aeccb92",
+      "type": "voucher",
+      "title": "Safari voucher",
+      "url": null,
+      "content": "Confirmation: SC-Y25AHH\nTrip: Tarangire Weekend\nTravel date: 2027-05-12\nTravellers: 1\nOperator: Kili Trails Safaris\n\nPresent this voucher to your guide on day 1.",
+      "position": 0,
+      "created_at": "2026-10-24T11:28:55.811415+03:00"
+    },
+    {
+      "uuid": "df284904-199a-425e-8da9-2fdf9568422a",
+      "type": "operator_contacts",
+      "title": "Operator contacts",
+      "url": null,
+      "content": "Kili Trails Safaris\nPhone: +255754000111\nEmail: bookings@kilitrails.co.tz",
+      "position": 1,
+      "created_at": "2026-10-24T11:28:55.811455+03:00"
+    },
+    {
+      "uuid": "fb0425ce-214d-4243-83cc-b5abe28de425",
+      "type": "packing_list",
+      "title": "Packing list",
+      "url": null,
+      "content": "Neutral-coloured clothing (khaki, olive, beige)\nWarm fleece for early morning drives\nWide-brim hat & sunglasses\nSunscreen SPF 50 & insect repellent\nBinoculars\nCamera + spare batteries / power bank\nComfortable closed walking shoes\nReusable water bottle\nPersonal medication & malaria prophylaxis\nPassport / NIDA ID and a copy of this voucher",
+      "position": 2,
+      "created_at": "2026-10-24T11:28:55.811482+03:00"
+    }
+  ]
+}

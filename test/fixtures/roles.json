@@ -1,0 +1,154 @@
+[
+  {
+    "uuid": "0bd5a0c5-b178-4ad3-9870-2d2965f06080",
+    "name": "Finance",
+    "description": "Money in and out: payments, refunds and FX.",
+    "is_system": true,
+    "permissions": [
+      "fx.manage",
+      "fx.view",
+      "goals.view",
+      "reports.view",
+      "payments.reconcile",
+      "payments.view",
+      "payments.view_raw",
+      "refunds.manage",
+      "refunds.view",
+      "settings.view",
+      "users.view"
+    ],
+    "staff_count": 0,
+    "created_at": "2026-10-24T11:28:55.748697+03:00",
+    "updated_at": "2026-10-24T11:28:55.748713+03:00"
+  },
+  {
+    "uuid": "161874ee-3ff6-494b-9620-39139fe38ce3",
+    "name": "Operations",
+    "description": "Runs trips day to day: catalogue, goals and bookings.",
+    "is_system": true,
+    "permissions": [
+      "bookings.manage",
+      "bookings.view",
+      "catalogue.manage",
+      "catalogue.view",
+      "goals.manage",
+      "goals.view",
+      "notifications.view",
+      "reports.view",
+      "payments.view",
+      "users.view"
+    ],
+    "staff_count": 0,
+    "created_at": "2026-10-24T11:28:55.746069+03:00",
+    "updated_at": "2026-10-24T11:28:55.746087+03:00"
+  },
+  {
+    "uuid": "9c7a956c-48a0-41bf-a3ca-62963f8cd28c",
+    "name": "Super Admin",
+    "description": "Full access, including staff and roles.",
+    "is_system": true,
+    "permissions": [
+      "audit.view",
+      "bookings.manage",
+      "bookings.view",
+      "catalogue.manage",
+      "catalogue.view",
+      "fx.manage",
+      "fx.view",
+      "goals.manage",
+      "goals.view",
+      "kyc.review",
+      "kyc.view",
+      "notifications.send",
+      "notifications.view",
+      "reports.view",
+      "payments.reconcile",
+      "payments.view",
+      "payments.view_raw",
+      "refunds.manage",
+      "refunds.view",
+      "settings.manage",
+      "settings.view",
+      "roles.manage",
+      "roles.view",
+      "staff.manage",
+      "staff.view",
+      "users.export",
+      "users.manage",
+      "users.view"
+    ],
+    "staff_count": 1,
+    "created_at": "2026-10-24T11:28:55.741760+03:00",
+    "updated_at": "2026-10-24T11:28:55.741777+03:00"
+  },
+  {
+    "uuid": "aeff5bc1-e026-4030-b276-833427d56601",
+    "name": "Support",
+    "description": "Helps customers: profiles, KYC, goals and messages.",
+    "is_system": true,
+    "permissions": [
+      "bookings.view",
+      "goals.manage",
+      "goals.view",
+      "kyc.review",
+      "kyc.view",
+      "notifications.send",
+      "notifications.view",
+      "reports.view",
+      "payments.view",
+      "refunds.view",
+      "users.manage",
+      "users.view"
+    ],
+    "staff_count": 0,
+    "created_at": "2026-10-24T11:28:55.751344+03:00",
+    "updated_at": "2026-10-24T11:28:55.751361+03:00"
+  },
+  {
+    "uuid": "b5031490-55f6-49ef-bd5f-62aa0aebac12",
+    "name": "Content",
+    "description": "Keeps the catalogue up to date.",
+    "is_system": true,
+    "permissions": [
+      "catalogue.manage",
+      "catalogue.view"
+    ],
+    "staff_count": 0,
+    "created_at": "2026-10-24T11:28:55.754054+03:00",
+    "updated_at": "2026-10-24T11:28:55.754071+03:00"
+  },
+  {
+    "uuid": "ba9dee94-6472-43d6-952e-34474a95cb24",
+    "name": "Auditor",
+    "description": "",
+    "is_system": false,
+    "permissions": [
+      "audit.view"
+    ],
+    "staff_count": 0,
+    "created_at": "2026-10-24T11:28:55.869545+03:00",
+    "updated_at": "2026-10-24T11:28:55.869562+03:00"
+  },
+  {
+    "uuid": "d6a0db29-9412-4fc9-b70f-7968edff25f4",
+    "name": "Viewer",
+    "description": "Read-only access to everything except staff.",
+    "is_system": true,
+    "permissions": [
+      "bookings.view",
+      "catalogue.view",
+      "fx.view",
+      "goals.view",
+      "kyc.view",
+      "notifications.view",
+      "reports.view",
+      "payments.view",
+      "refunds.view",
+      "settings.view",
+      "users.view"
+    ],
+    "staff_count": 0,
+    "created_at": "2026-10-24T11:28:55.756438+03:00",
+    "updated_at": "2026-10-24T11:28:55.756455+03:00"
+  }
+]

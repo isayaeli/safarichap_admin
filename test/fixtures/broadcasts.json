@@ -1,0 +1,18 @@
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "uuid": "30bdc0dc-ecd1-4d67-a47a-0ed81f68ff2f",
+      "title": "Hi",
+      "message": "News",
+      "audience": {
+        "kind": "all"
+      },
+      "recipients": 1,
+      "sent_by": "Asha Mushi",
+      "created_at": "2026-10-24T11:28:55.874869+03:00"
+    }
+  ]
+}

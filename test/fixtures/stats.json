@@ -1,0 +1,64 @@
+{
+  "days": 30,
+  "users": {
+    "total": 1,
+    "new": 1,
+    "residents": 1,
+    "non_residents": 0
+  },
+  "goals": {
+    "draft": 0,
+    "active": 0,
+    "paused": 0,
+    "completed": 1,
+    "cancelled": 1,
+    "expired": 0
+  },
+  "collected": {
+    "TZS": 580000
+  },
+  "collected_in_period": {
+    "TZS": 580000
+  },
+  "outstanding": {},
+  "outstanding_paid": {},
+  "payments": {
+    "pending": 0,
+    "failed_in_period": 0,
+    "success_in_period": 2
+  },
+  "refunds": {
+    "open": 1,
+    "failed": 0,
+    "open_amount": {
+      "TZS": 87500
+    }
+  },
+  "kyc_pending": 1,
+  "bookings": {
+    "total": 1,
+    "upcoming": 1,
+    "next_30_days": 0
+  },
+  "collections_series": [
+    {
+      "date": "2026-10-24",
+      "currency": "TZS",
+      "amount": 580000,
+      "count": 2
+    }
+  ],
+  "signups_series": [
+    {
+      "date": "2026-10-24",
+      "count": 1
+    }
+  ],
+  "top_itineraries": [
+    {
+      "itinerary__uuid": "39f6dea0-ad22-4449-86c8-b31233612818",
+      "itinerary__title": "Tarangire Weekend",
+      "goals": 2
+    }
+  ]
+}

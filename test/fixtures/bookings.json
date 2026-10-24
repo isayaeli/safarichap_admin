@@ -1,0 +1,24 @@
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "uuid": "be1442a4-f00a-4488-b69d-27374659b622",
+      "confirmation_code": "SC-Y25AHH",
+      "status": "confirmed",
+      "travel_date": "2027-05-12",
+      "user": {
+        "uuid": "52dfbfb1-04f6-46b8-8454-545273eefdd4",
+        "full_name": "Asha Mushi",
+        "phone_number": "+255712345678",
+        "email": null
+      },
+      "goal_uuid": "4360eec4-d864-4752-99aa-1b6baf46ff4d",
+      "itinerary_title": "Tarangire Weekend",
+      "operator_name": "Kili Trails Safaris",
+      "travellers": 1,
+      "created_at": "2026-10-24T11:28:55.810604+03:00"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+[
+  {
+    "code": "audit.view",
+    "label": "View the audit log",
+    "group": "Audit log"
+  },
+  {
+    "code": "bookings.manage",
+    "label": "Edit bookings and trip documents",
+    "group": "Bookings"
+  },
+  {
+    "code": "bookings.view",
+    "label": "View bookings",
+    "group": "Bookings"
+  },
+  {
+    "code": "catalogue.manage",
+    "label": "Create and edit operators, destinations and trips",
+    "group": "Catalogue"
+  },
+  {
+    "code": "catalogue.view",
+    "label": "View operators, destinations and trips",
+    "group": "Catalogue"
+  },
+  {
+    "code": "fx.manage",
+    "label": "Override and refresh FX rates",
+    "group": "FX rates"
+  },
+  {
+    "code": "fx.view",
+    "label": "View FX rates",
+    "group": "FX rates"
+  },
+  {
+    "code": "goals.manage",
+    "label": "Pause, resume, reschedule and cancel goals",
+    "group": "Goals"
+  },
+  {
+    "code": "goals.view",
+    "label": "View savings goals",
+    "group": "Goals"
+  },
+  {
+    "code": "kyc.review",
+    "label": "Approve or reject KYC",
+    "group": "KYC"
+  },
+  {
+    "code": "kyc.view",
+    "label": "View KYC submissions",
+    "group": "KYC"
+  },
+  {
+    "code": "notifications.send",
+    "label": "Send notifications to customers",
+    "group": "Notifications"
+  },
+  {
+    "code": "notifications.view",
+    "label": "View sent notifications",
+    "group": "Notifications"
+  },
+  {
+    "code": "reports.view",
+    "label": "View overview and reports",
+    "group": "Overview"
+  },
+  {
+    "code": "payments.reconcile",
+    "label": "Reconcile payments with the provider",
+    "group": "Payments"
+  },
+  {
+    "code": "payments.view",
+    "label": "View payments",
+    "group": "Payments"
+  },
+  {
+    "code": "payments.view_raw",
+    "label": "View raw provider webhooks",
+    "group": "Payments"
+  },
+  {
+    "code": "refunds.manage",
+    "label": "Process and close refunds",
+    "group": "Refunds"
+  },
+  {
+    "code": "refunds.view",
+    "label": "View refunds",
+    "group": "Refunds"
+  },
+  {
+    "code": "settings.manage",
+    "label": "Change app settings",
+    "group": "Settings"
+  },
+  {
+    "code": "settings.view",
+    "label": "View app settings",
+    "group": "Settings"
+  },
+  {
+    "code": "roles.manage",
+    "label": "Create and edit roles",
+    "group": "Staff & roles"
+  },
+  {
+    "code": "roles.view",
+    "label": "View roles",
+    "group": "Staff & roles"
+  },
+  {
+    "code": "staff.manage",
+    "label": "Invite, edit and deactivate staff",
+    "group": "Staff & roles"
+  },
+  {
+    "code": "staff.view",
+    "label": "View staff",
+    "group": "Staff & roles"
+  },
+  {
+    "code": "users.export",
+    "label": "Export customers to CSV",
+    "group": "Users"
+  },
+  {
+    "code": "users.manage",
+    "label": "Edit and disable customers",
+    "group": "Users"
+  },
+  {
+    "code": "users.view",
+    "label": "View customers",
+    "group": "Users"
+  }
+]

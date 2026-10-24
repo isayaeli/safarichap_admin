@@ -1,0 +1,77 @@
+{
+  "count": 5,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "uuid": "d6d0cf2e-cd98-4405-bf86-79e7809411ba",
+      "user": {
+        "uuid": "52dfbfb1-04f6-46b8-8454-545273eefdd4",
+        "full_name": "Asha Mushi",
+        "phone_number": "+255712345678",
+        "email": null
+      },
+      "title": "Hi",
+      "message": "News",
+      "type": "announcement",
+      "is_read": false,
+      "created_at": "2026-10-24T11:28:55.912156+03:00"
+    },
+    {
+      "uuid": "5cf9e0c1-1932-4e1e-b840-a6a3b5cf58d0",
+      "user": {
+        "uuid": "52dfbfb1-04f6-46b8-8454-545273eefdd4",
+        "full_name": "Asha Mushi",
+        "phone_number": "+255712345678",
+        "email": null
+      },
+      "title": "Goal cancelled",
+      "message": "Your refund of TZS 87,500 is being processed.",
+      "type": "goal_cancelled",
+      "is_read": false,
+      "created_at": "2026-10-24T11:28:55.847955+03:00"
+    },
+    {
+      "uuid": "5afb15cd-bdac-4455-a1a0-b30440907adc",
+      "user": {
+        "uuid": "52dfbfb1-04f6-46b8-8454-545273eefdd4",
+        "full_name": "Asha Mushi",
+        "phone_number": "+255712345678",
+        "email": null
+      },
+      "title": "Payment received",
+      "message": "We received TZS 100,000 for Tarangire Weekend.",
+      "type": "payment_success",
+      "is_read": false,
+      "created_at": "2026-10-24T11:28:55.838946+03:00"
+    },
+    {
+      "uuid": "addd68e3-79ce-43d6-a4f5-d3966d42d004",
+      "user": {
+        "uuid": "52dfbfb1-04f6-46b8-8454-545273eefdd4",
+        "full_name": "Asha Mushi",
+        "phone_number": "+255712345678",
+        "email": null
+      },
+      "title": "Trip confirmed! 🎉",
+      "message": "Tarangire Weekend is fully paid. Your booking SC-Y25AHH and trip documents are ready.",
+      "type": "goal_completed",
+      "is_read": false,
+      "created_at": "2026-10-24T11:28:55.812436+03:00"
+    },
+    {
+      "uuid": "0c8936b3-e1b6-4dbc-8090-048ba7a6883f",
+      "user": {
+        "uuid": "52dfbfb1-04f6-46b8-8454-545273eefdd4",
+        "full_name": "Asha Mushi",
+        "phone_number": "+255712345678",
+        "email": null
+      },
+      "title": "Payment received",
+      "message": "We received TZS 480,000 for Tarangire Weekend.",
+      "type": "payment_success",
+      "is_read": false,
+      "created_at": "2026-10-24T11:28:55.804335+03:00"
+    }
+  ]
+}

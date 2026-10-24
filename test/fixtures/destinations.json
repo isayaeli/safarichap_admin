@@ -1,0 +1,15 @@
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "uuid": "4536e73a-cfcf-467a-bc7a-2747d55bd909",
+      "name": "Tarangire",
+      "region": "Northern circuit",
+      "image": "",
+      "itineraries_count": 1,
+      "created_at": "2026-10-24T11:28:55.763673+03:00"
+    }
+  ]
+}

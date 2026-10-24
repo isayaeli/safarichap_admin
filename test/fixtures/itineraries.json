@@ -1,0 +1,30 @@
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "uuid": "39f6dea0-ad22-4449-86c8-b31233612818",
+      "title": "Tarangire Weekend",
+      "slug": "trip-1",
+      "duration_days": 2,
+      "accommodation_level": "budget",
+      "operator_uuid": "56b239eb-2f4b-479c-88f3-fec5f97ac975",
+      "operator_name": "Kili Trails Safaris",
+      "destinations": [
+        "Tarangire"
+      ],
+      "images": [
+        "https://img/cover.jpg"
+      ],
+      "is_active": true,
+      "is_featured": false,
+      "sort_order": 0,
+      "base_currency": "TZS",
+      "from_price": 480000,
+      "goals_count": 2,
+      "created_at": "2026-10-24T11:28:55.762779+03:00",
+      "updated_at": "2026-10-24T11:28:55.762796+03:00"
+    }
+  ]
+}

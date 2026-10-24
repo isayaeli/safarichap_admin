@@ -1,0 +1,10 @@
+{
+  "default_lead_time_days": 14,
+  "missed_before_pause": 3,
+  "min_payment_tzs": 5000,
+  "min_payment_other_major": 10,
+  "reminder_days_before_due": 3,
+  "pending_payment_timeout_minutes": 15,
+  "packing_list": "Neutral-coloured clothing (khaki, olive, beige)\nWarm fleece for early morning drives\nWide-brim hat & sunglasses\nSunscreen SPF 50 & insect repellent\nBinoculars\nCamera + spare batteries / power bank\nComfortable closed walking shoes\nReusable water bottle\nPersonal medication & malaria prophylaxis\nPassport / NIDA ID and a copy of this voucher",
+  "updated_at": "2026-10-24T11:28:55.775612+03:00"
+}

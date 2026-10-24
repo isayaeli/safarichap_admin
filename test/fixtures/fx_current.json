@@ -1,0 +1,38 @@
+[
+  {
+    "uuid": "da1dd12b-cb9f-4899-a160-92f01f344195",
+    "from_currency": "EUR",
+    "to_currency": "TZS",
+    "numerator": 2800,
+    "denominator": 1,
+    "source": "",
+    "fetched_at": "2026-10-24T11:28:55.721883+03:00"
+  },
+  {
+    "uuid": "0ca87dab-2bc3-4dd6-8546-699740a3205b",
+    "from_currency": "GBP",
+    "to_currency": "TZS",
+    "numerator": 3300,
+    "denominator": 1,
+    "source": "",
+    "fetched_at": "2026-10-24T11:28:55.721883+03:00"
+  },
+  {
+    "uuid": "51af6614-fb52-45be-8fef-9b06b6839ec9",
+    "from_currency": "USD",
+    "to_currency": "TZS",
+    "numerator": 2650,
+    "denominator": 1,
+    "source": "manual:1",
+    "fetched_at": "2026-10-24T11:28:55.866031+03:00"
+  },
+  {
+    "uuid": "51af6614-fb52-45be-8fef-9b06b6839ec9",
+    "from_currency": "USD",
+    "to_currency": "TZS",
+    "numerator": 2650,
+    "denominator": 1,
+    "source": "manual:1",
+    "fetched_at": "2026-10-24T11:28:55.866031+03:00"
+  }
+]

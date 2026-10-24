@@ -1,0 +1,10 @@
+build/
+.dart_tool/
+.idea/
+*.iml
+test/
+tool/
+.git/
+.flutter-plugins-dependencies
+.env
+.env.*

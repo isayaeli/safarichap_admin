@@ -1,0 +1,136 @@
+{
+  "uuid": "52dfbfb1-04f6-46b8-8454-545273eefdd4",
+  "full_name": "Asha Mushi",
+  "phone_number": "+255712345678",
+  "email": null,
+  "residency": "resident",
+  "preferred_currency": "TZS",
+  "country": "TZ",
+  "kyc_status": "pending",
+  "notifications_enabled": true,
+  "is_active": true,
+  "is_staff": false,
+  "last_login": null,
+  "created_at": "2026-10-24T11:28:55.761662+03:00",
+  "goals_count": 2,
+  "active_goals_count": 0,
+  "goals": [
+    {
+      "uuid": "e967f4e5-1f5d-4643-ad64-2ed6c28bef32",
+      "title": "Tarangire Weekend",
+      "user": {
+        "uuid": "52dfbfb1-04f6-46b8-8454-545273eefdd4",
+        "full_name": "Asha Mushi",
+        "phone_number": "+255712345678",
+        "email": null
+      },
+      "itinerary_uuid": "39f6dea0-ad22-4449-86c8-b31233612818",
+      "itinerary_title": "Tarangire Weekend",
+      "travel_date": "2027-05-12",
+      "pay_by_date": "2027-04-28",
+      "currency": "TZS",
+      "total_amount": 480000,
+      "deposit_amount": 0,
+      "amount_paid": 100000,
+      "frequency": "monthly",
+      "status": "cancelled",
+      "consecutive_missed": 0,
+      "created_at": "2026-10-24T11:28:55.817082+03:00",
+      "activated_at": "2026-10-24T11:28:55.824816+03:00",
+      "completed_at": null
+    },
+    {
+      "uuid": "4360eec4-d864-4752-99aa-1b6baf46ff4d",
+      "title": "Tarangire Weekend",
+      "user": {
+        "uuid": "52dfbfb1-04f6-46b8-8454-545273eefdd4",
+        "full_name": "Asha Mushi",
+        "phone_number": "+255712345678",
+        "email": null
+      },
+      "itinerary_uuid": "39f6dea0-ad22-4449-86c8-b31233612818",
+      "itinerary_title": "Tarangire Weekend",
+      "travel_date": "2027-05-12",
+      "pay_by_date": "2027-04-28",
+      "currency": "TZS",
+      "total_amount": 480000,
+      "deposit_amount": 0,
+      "amount_paid": 480000,
+      "frequency": "monthly",
+      "status": "completed",
+      "consecutive_missed": 0,
+      "created_at": "2026-10-24T11:28:55.777030+03:00",
+      "activated_at": "2026-10-24T11:28:55.786977+03:00",
+      "completed_at": "2026-10-24T11:28:55.808081+03:00"
+    }
+  ],
+  "payments": [
+    {
+      "uuid": "51fc544b-7b3e-43c0-a804-0ab57b6cda95",
+      "user": {
+        "uuid": "52dfbfb1-04f6-46b8-8454-545273eefdd4",
+        "full_name": "Asha Mushi",
+        "phone_number": "+255712345678",
+        "email": null
+      },
+      "goal_uuid": "e967f4e5-1f5d-4643-ad64-2ed6c28bef32",
+      "goal_title": "Tarangire Weekend",
+      "amount": 100000,
+      "currency": "TZS",
+      "method": "mpesa",
+      "phone_number": "255712345678",
+      "order_reference": "FIXTUREPAY0002",
+      "provider": "clickpesa",
+      "provider_reference": "P1",
+      "provider_txn_id": "tx1",
+      "status": "success",
+      "failure_reason": null,
+      "receipt_number": "SC-RCPT-M5P8BRSM",
+      "settled_at": "2026-10-24T11:28:55.837594+03:00",
+      "created_at": "2026-10-24T11:28:55.834454+03:00"
+    },
+    {
+      "uuid": "045aeea9-16fc-436d-9f4f-fd574bee968a",
+      "user": {
+        "uuid": "52dfbfb1-04f6-46b8-8454-545273eefdd4",
+        "full_name": "Asha Mushi",
+        "phone_number": "+255712345678",
+        "email": null
+      },
+      "goal_uuid": "4360eec4-d864-4752-99aa-1b6baf46ff4d",
+      "goal_title": "Tarangire Weekend",
+      "amount": 480000,
+      "currency": "TZS",
+      "method": "mpesa",
+      "phone_number": "255712345678",
+      "order_reference": "FIXTUREPAY0001",
+      "provider": "clickpesa",
+      "provider_reference": "P1",
+      "provider_txn_id": "tx1",
+      "status": "success",
+      "failure_reason": null,
+      "receipt_number": "SC-RCPT-8L8CZTSX",
+      "settled_at": "2026-10-24T11:28:55.802954+03:00",
+      "created_at": "2026-10-24T11:28:55.798433+03:00"
+    }
+  ],
+  "devices": [],
+  "kyc_documents": [
+    {
+      "uuid": "000179d0-16c6-4cae-a670-0aedadc2c265",
+      "user": {
+        "uuid": "52dfbfb1-04f6-46b8-8454-545273eefdd4",
+        "full_name": "Asha Mushi",
+        "phone_number": "+255712345678",
+        "email": null
+      },
+      "document_type": "passport",
+      "document_number": "AB123456",
+      "status": "pending",
+      "review_note": "",
+      "reviewed_at": null,
+      "reviewed_by": null,
+      "created_at": "2026-10-24T11:28:55.849454+03:00"
+    }
+  ]
+}

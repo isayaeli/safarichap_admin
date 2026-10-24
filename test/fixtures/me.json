@@ -1,0 +1,44 @@
+{
+  "user": {
+    "uuid": "30db2329-724d-4494-a331-912fa30eea2a",
+    "full_name": "Asha Mushi",
+    "email": "staff-1@safarichap.co.tz",
+    "phone_number": "+255712345678"
+  },
+  "roles": [
+    {
+      "uuid": "9c7a956c-48a0-41bf-a3ca-62963f8cd28c",
+      "name": "Super Admin"
+    }
+  ],
+  "permissions": [
+    "audit.view",
+    "bookings.manage",
+    "bookings.view",
+    "catalogue.manage",
+    "catalogue.view",
+    "fx.manage",
+    "fx.view",
+    "goals.manage",
+    "goals.view",
+    "kyc.review",
+    "kyc.view",
+    "notifications.send",
+    "notifications.view",
+    "payments.reconcile",
+    "payments.view",
+    "payments.view_raw",
+    "refunds.manage",
+    "refunds.view",
+    "reports.view",
+    "roles.manage",
+    "roles.view",
+    "settings.manage",
+    "settings.view",
+    "staff.manage",
+    "staff.view",
+    "users.export",
+    "users.manage",
+    "users.view"
+  ]
+}

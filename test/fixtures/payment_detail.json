@@ -1,0 +1,32 @@
+{
+  "uuid": "045aeea9-16fc-436d-9f4f-fd574bee968a",
+  "user": {
+    "uuid": "52dfbfb1-04f6-46b8-8454-545273eefdd4",
+    "full_name": "Asha Mushi",
+    "phone_number": "+255712345678",
+    "email": null
+  },
+  "goal_uuid": "4360eec4-d864-4752-99aa-1b6baf46ff4d",
+  "goal_title": "Tarangire Weekend",
+  "amount": 480000,
+  "currency": "TZS",
+  "method": "mpesa",
+  "phone_number": "255712345678",
+  "order_reference": "FIXTUREPAY0001",
+  "provider": "clickpesa",
+  "provider_reference": "P1",
+  "provider_txn_id": "tx1",
+  "status": "success",
+  "failure_reason": null,
+  "receipt_number": "SC-RCPT-8L8CZTSX",
+  "settled_at": "2026-10-24T11:28:55.802954+03:00",
+  "created_at": "2026-10-24T11:28:55.798433+03:00",
+  "raw_webhook": {
+    "data": {
+      "orderReference": "FIXTUREPAY0001",
+      "status": "SUCCESS",
+      "paymentReference": "P1",
+      "id": "tx1"
+    }
+  }
+}
