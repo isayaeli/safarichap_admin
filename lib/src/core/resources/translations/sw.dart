@@ -81,6 +81,7 @@ const Map<String, String> sw = {
       "Inauliza mtoa huduma hali ya malipo haya sasa. Yakiwa yamefanikiwa, yanaingizwa kwenye lengo; muda ukipita bila uthibitisho, yanawekwa kuwa yameshindwa.",
   "At least (days)": "Angalau (siku)",
   "Attempts": "Majaribio",
+  "Attempts: @n": "Majaribio: @n",
   "Audience": "Wapokeaji",
   "Audit log": "Kumbukumbu za ukaguzi",
   "Authentication failed. Please try again.":
@@ -393,6 +394,7 @@ const Map<String, String> sw = {
   "Paused": "Imesimamishwa",
   "Pay": "Lipa",
   "Pay by": "Lipa kufikia",
+  "Pay by @date": "Lipa kufikia @date",
   "Payment": "Malipo",
   "Payment is now @status": "Malipo sasa yako @status",
   "Payment must be complete this many days before travel, unless the trip or operator says otherwise.":

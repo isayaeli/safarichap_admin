@@ -1,4 +1,3 @@
-import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safarichap_admin/src/core/components/confirm_dialog.dart';
@@ -67,7 +66,7 @@ class _RefundsScreenState extends State<RefundsScreen> {
         controller: _controller,
         searchHint: 'Reference, phone, customer or goal',
         emptyMessage: 'No refunds match',
-        minWidth: 1050,
+        minWidth: 740,
         onTap: (r) => _shell.open(GoalDetailsScreen(uuid: r.goal_uuid)),
         filters: [
           FilterDropdown<String>(
@@ -86,12 +85,10 @@ class _RefundsScreenState extends State<RefundsScreen> {
           TableColumn(
             'Customer',
             (r) => TwoLineCell(r.user.displayName, r.phone_number),
-            size: ColumnSize.L,
           ),
           TableColumn(
             'Goal',
             (r) => Text(r.goal_title, overflow: TextOverflow.ellipsis),
-            size: ColumnSize.L,
           ),
           TableColumn(
             'Amount',
@@ -105,21 +102,18 @@ class _RefundsScreenState extends State<RefundsScreen> {
           TableColumn(
             'Status',
             (r) => StatusChip.refund(r.status),
-            size: ColumnSize.S,
+            fixedWidth: 110, // keeps the chip on one line
           ),
-          TableColumn(
-            'Attempts',
-            (r) => Text('${r.attempts}'),
-            size: ColumnSize.S,
-            numeric: true,
-          ),
+          // Attempts sit under the error so the table fits without scrolling.
           TableColumn(
             'Last error',
             (r) => Tooltip(
               message: r.failure_reason ?? '',
-              child: Text(
+              child: TwoLineCell(
                 r.failure_reason ?? '-',
-                overflow: TextOverflow.ellipsis,
+                r.attempts == 0
+                    ? null
+                    : "Attempts: @n".trParams({'n': '${r.attempts}'}),
               ),
             ),
           ),
@@ -155,7 +149,7 @@ class _RefundsScreenState extends State<RefundsScreen> {
                             ],
                           ),
                   ),
-            fixedWidth: 120,
+            fixedWidth: 104, // two icon buttons
           ),
         ],
       ),

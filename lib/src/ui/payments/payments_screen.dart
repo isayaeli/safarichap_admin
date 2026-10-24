@@ -1,4 +1,3 @@
-import 'package:data_table_2/data_table_2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safarichap_admin/src/core/components/paged_table.dart';
@@ -38,7 +37,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
         controller: _controller,
         searchHint: 'Reference, receipt, phone or customer',
         emptyMessage: 'No payments match',
-        minWidth: 1050,
+        minWidth: 740,
         onTap: (p) async {
           await _shell.open(PaymentDetailsScreen(uuid: p.uuid));
           _controller.load();
@@ -76,12 +75,10 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
               p.user.displayName,
               p.phone_number ?? p.user.phone_number,
             ),
-            size: ColumnSize.L,
           ),
           TableColumn(
             'Goal',
             (p) => Text(p.goal_title, overflow: TextOverflow.ellipsis),
-            size: ColumnSize.L,
           ),
           TableColumn(
             'Amount',
@@ -93,21 +90,14 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
             sortKey: 'amount',
           ),
           TableColumn(
-            'Method',
-            (p) => Text(p.method.label),
-            size: ColumnSize.S,
-          ),
-          TableColumn(
             'Status',
             (p) => StatusChip.payment(p.status),
-            size: ColumnSize.S,
+            fixedWidth: 110, // keeps the chip on one line
           ),
+          // Method and receipt share a column so the table fits without scrolling.
           TableColumn(
-            'Receipt',
-            (p) => Text(
-              p.receipt_number ?? '-',
-              style: const TextStyle(fontFamily: 'monospace', fontSize: 12),
-            ),
+            'Method',
+            (p) => TwoLineCell(p.method.label, p.receipt_number),
           ),
         ],
       ),

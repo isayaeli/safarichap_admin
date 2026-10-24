@@ -30,23 +30,36 @@ class SimpleTable<T> extends StatelessWidget {
         ),
       );
     }
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: DataTable(
-        showCheckboxColumn: false,
-        headingRowHeight: 38,
-        dataRowMinHeight: 44,
-        dataRowMaxHeight: 56,
-        horizontalMargin: 4,
-        columnSpacing: 28,
-        columns: [for (final h in headers) DataColumn(label: Text(h.tr))],
-        rows: [
-          for (final item in items)
-            DataRow(
-              onSelectChanged: onTap == null ? null : (_) => onTap!(item),
-              cells: [for (final c in cells(item)) DataCell(c)],
-            ),
-        ],
+    // Fill the card's width; scroll sideways only when the columns don't fit.
+    return LayoutBuilder(
+      builder: (context, constraints) => SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minWidth: constraints.maxWidth),
+          child: DataTable(
+            showCheckboxColumn: false,
+            headingRowHeight: 38,
+            dataRowMinHeight: 44,
+            dataRowMaxHeight: 56,
+            horizontalMargin: 4,
+            columnSpacing: 28,
+            columns: [
+              for (final h in headers)
+                DataColumn(
+                  label: Text(h.tr),
+                  // flex shares the spare width instead of leaving a blank strip.
+                  columnWidth: const IntrinsicColumnWidth(flex: 1),
+                ),
+            ],
+            rows: [
+              for (final item in items)
+                DataRow(
+                  onSelectChanged: onTap == null ? null : (_) => onTap!(item),
+                  cells: [for (final c in cells(item)) DataCell(c)],
+                ),
+            ],
+          ),
+        ),
       ),
     );
   }
