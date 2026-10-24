@@ -13,6 +13,7 @@ import 'package:safarichap_admin/src/st/st.dart';
 import 'package:safarichap_admin/src/ui/goals/goal_details_screen.dart';
 import 'package:safarichap_admin/src/ui/shell/shell_controller.dart';
 import 'package:safarichap_admin/src/ui/users/user_details_screen.dart';
+import 'package:safarichap_admin/src/core/components/busy_button.dart';
 
 import 'payments_controller.dart';
 
@@ -69,12 +70,12 @@ class _PaymentDetailsScreenState extends State<PaymentDetailsScreen> {
             if (p.status == PaymentStatus.pending)
               PermissionGate(
                 code: 'payments.reconcile',
-                child: FilledButton.icon(
-                  onPressed: _controller.isReconciling.value
-                      ? null
-                      : _reconcile,
-                  icon: const Icon(Icons.sync, size: 18),
-                  label: Text("Reconcile".tr),
+                child: BusyButton(
+                  kind: BusyButtonKind.filled,
+                  busy: _controller.isReconciling.value,
+                  onPressed: _reconcile,
+                  icon: Icons.sync,
+                  label: "Reconcile".tr,
                 ),
               ),
           ],

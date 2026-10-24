@@ -30,6 +30,7 @@ class BookingDetailController extends GetxController {
 
   final isLoading = false.obs;
   final isSaving = false.obs;
+  final isNotifying = false.obs;
   final booking = Rxn<AdminBooking>();
 
   @override
@@ -97,7 +98,7 @@ class BookingDetailController extends GetxController {
 
   Future<void> notifyTraveller() async {
     await _bookingRepository.notifyTraveller(uuid).execute((result) {
-      isSaving.value = result is Loading;
+      isNotifying.value = result is Loading;
       if (result is Success) {
         showSuccessSnack("The traveller was notified".tr);
       } else if (result is Fail) {

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safarichap_admin/src/data/models/staff/staff.dart';
+import 'package:safarichap_admin/src/core/utils/navigation.dart';
+import 'package:safarichap_admin/src/core/components/busy_button.dart';
 
 import 'staff_controller.dart';
 
@@ -99,7 +101,7 @@ class _InviteStaffDialogState extends State<InviteStaffDialog> {
               onPressed: () => widget.controller.copy(_link!),
               child: Text("Copy link".tr),
             ),
-          FilledButton(onPressed: Get.back, child: Text("Done".tr)),
+          FilledButton(onPressed: () => closeDialog(), child: Text("Done".tr)),
         ],
       );
     }
@@ -154,11 +156,12 @@ class _InviteStaffDialogState extends State<InviteStaffDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: Get.back, child: Text("Cancel".tr)),
+        TextButton(onPressed: () => closeDialog(), child: Text("Cancel".tr)),
         Obx(
-          () => FilledButton(
-            onPressed: widget.controller.isSaving.value ? null : _invite,
-            child: Text("Send invite".tr),
+          () => BusyButton(
+            busy: widget.controller.isSaving.value,
+            onPressed: _invite,
+            label: "Send invite".tr,
           ),
         ),
       ],
@@ -188,7 +191,7 @@ class _EditStaffDialogState extends State<EditStaffDialog> {
       'full_name': _name.text.trim(),
       'roles': _roles.toList(),
     });
-    if (ok) Get.back();
+    if (ok) closeDialog();
   }
 
   @override
@@ -230,11 +233,12 @@ class _EditStaffDialogState extends State<EditStaffDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: Get.back, child: Text("Cancel".tr)),
+        TextButton(onPressed: () => closeDialog(), child: Text("Cancel".tr)),
         Obx(
-          () => FilledButton(
-            onPressed: widget.controller.isSaving.value ? null : _save,
-            child: Text("Save".tr),
+          () => BusyButton(
+            busy: widget.controller.isSaving.value,
+            onPressed: _save,
+            label: "Save".tr,
           ),
         ),
       ],

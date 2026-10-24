@@ -5,6 +5,7 @@ import 'package:safarichap_admin/src/data/models/result.dart';
 import 'package:safarichap_admin/src/data/repositories/auth_repository.dart';
 import 'package:safarichap_admin/src/ui/onboarding/decision_tree.dart';
 import 'package:safarichap_admin/src/ui/onboarding/session_controller.dart';
+import 'package:safarichap_admin/src/core/utils/navigation.dart';
 
 class SignInController extends GetxController {
   final AuthRepository _authRepo;
@@ -30,7 +31,7 @@ class SignInController extends GetxController {
     await _authRepo.sendPasswordReset(email).execute((result) {
       isSendingReset.value = result is Loading;
       if (result is Success) {
-        Get.back();
+        closeDialog();
         showSuccessSnack(
           "If @email is a staff account, a reset link is on its way.".trParams({
             'email': email,

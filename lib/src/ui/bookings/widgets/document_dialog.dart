@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:safarichap_admin/src/core/utils/file_upload.dart';
 import 'package:safarichap_admin/src/data/models/booking/booking.dart';
 import 'package:safarichap_admin/src/data/models/enums.dart';
+import 'package:safarichap_admin/src/core/utils/navigation.dart';
+import 'package:safarichap_admin/src/core/components/busy_button.dart';
 
 import '../bookings_controller.dart';
 
@@ -48,7 +50,7 @@ class _DocumentDialogState extends State<DocumentDialog> {
         'content': _content.text.trim().isEmpty ? null : _content.text.trim(),
       },
     );
-    if (ok) Get.back();
+    if (ok) closeDialog();
   }
 
   @override
@@ -117,11 +119,12 @@ class _DocumentDialogState extends State<DocumentDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: Get.back, child: Text("Cancel".tr)),
+        TextButton(onPressed: () => closeDialog(), child: Text("Cancel".tr)),
         Obx(
-          () => FilledButton(
-            onPressed: widget.controller.isSaving.value ? null : _save,
-            child: Text("Save".tr),
+          () => BusyButton(
+            busy: widget.controller.isSaving.value,
+            onPressed: _save,
+            label: "Save".tr,
           ),
         ),
       ],

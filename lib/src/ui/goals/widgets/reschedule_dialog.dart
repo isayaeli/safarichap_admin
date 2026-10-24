@@ -5,6 +5,7 @@ import 'package:safarichap_admin/src/core/utils/extensions.dart';
 import 'package:safarichap_admin/src/core/utils/time_util.dart';
 import 'package:safarichap_admin/src/data/models/enums.dart';
 import 'package:safarichap_admin/src/data/models/goal/goal.dart';
+import 'package:safarichap_admin/src/core/utils/navigation.dart';
 
 /// New travel date (and optionally frequency). The API keeps the locked price
 /// and re-spreads only the remaining balance. Returns the request body.
@@ -75,14 +76,12 @@ class _RescheduleDialogState extends State<RescheduleDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: Get.back, child: Text("Cancel".tr)),
+        TextButton(onPressed: () => closeDialog(), child: Text("Cancel".tr)),
         FilledButton(
-          onPressed: () => Get.back(
-            result: {
-              'travel_date': _date.toApiDate(),
-              'frequency': _frequency.wire,
-            },
-          ),
+          onPressed: () => closeDialog({
+            'travel_date': _date.toApiDate(),
+            'frequency': _frequency.wire,
+          }),
           child: Text("Reschedule".tr),
         ),
       ],

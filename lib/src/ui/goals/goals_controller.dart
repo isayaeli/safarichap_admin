@@ -28,7 +28,9 @@ class GoalDetailController extends GetxController {
   GoalDetailController(this._goalRepository, this.uuid);
 
   final isLoading = false.obs;
-  final isActing = false.obs;
+
+  /// The goal action in flight (pause | resume | reschedule | cancel).
+  final acting = RxnString();
   final goal = Rxn<GoalDetail>();
 
   @override
@@ -55,7 +57,7 @@ class GoalDetailController extends GetxController {
     String successMessage,
   ) async {
     await _goalRepository.goalAction(uuid, action, body).execute((result) {
-      isActing.value = result is Loading;
+      acting.value = result is Loading ? action : null;
       if (result is Success) {
         goal.value = result.data as GoalDetail;
         showSuccessSnack(successMessage);

@@ -9,6 +9,7 @@ import 'package:safarichap_admin/src/data/models/enums.dart';
 import 'package:safarichap_admin/src/data/models/user/admin_user.dart';
 import 'package:safarichap_admin/src/st/st.dart';
 import 'package:safarichap_admin/src/ui/shell/shell_controller.dart';
+import 'package:safarichap_admin/src/core/components/busy_button.dart';
 
 import 'user_details_screen.dart';
 import 'users_controller.dart';
@@ -64,12 +65,12 @@ class _UsersScreenState extends State<UsersScreen> {
         actions: [
           PermissionGate(
             code: 'users.export',
-            child: OutlinedButton.icon(
-              onPressed: _controller.isExporting.value
-                  ? null
-                  : _controller.exportCsv,
-              icon: const Icon(Icons.download_outlined, size: 18),
-              label: Text("Export CSV".tr),
+            child: BusyButton(
+              kind: BusyButtonKind.outlined,
+              busy: _controller.isExporting.value,
+              onPressed: _controller.exportCsv,
+              icon: Icons.download_outlined,
+              label: "Export CSV".tr,
             ),
           ),
         ],

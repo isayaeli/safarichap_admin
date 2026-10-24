@@ -5,6 +5,7 @@ import 'package:safarichap_admin/src/core/components/permission_gate.dart';
 import 'package:safarichap_admin/src/core/components/status_chip.dart';
 import 'package:safarichap_admin/src/data/models/staff/staff.dart';
 import 'package:safarichap_admin/src/st/st.dart';
+import 'package:safarichap_admin/src/core/components/busy_button.dart';
 
 import 'roles_controller.dart';
 
@@ -208,10 +209,9 @@ class _RoleEditorState extends State<_RoleEditor> {
                   ),
                 if (_editable)
                   Obx(
-                    () => FilledButton(
-                      onPressed:
-                          widget.controller.isSaving.value ||
-                              _name.text.trim().isEmpty && role == null
+                    () => BusyButton(
+                      busy: widget.controller.isSaving.value,
+                      onPressed: _name.text.trim().isEmpty && role == null
                           ? null
                           : () => widget.controller.save(
                               uuid: role?.uuid,
@@ -219,7 +219,7 @@ class _RoleEditorState extends State<_RoleEditor> {
                               description: _description.text.trim(),
                               codes: _codes,
                             ),
-                      child: Text("Save".tr),
+                      label: "Save".tr,
                     ),
                   ),
               ],
