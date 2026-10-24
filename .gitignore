@@ -63,3 +63,6 @@ __pycache__/
 .vscode/
 *.code-workspace
 Thumbs.db
+
+# Dashboard settings (Firebase web key, API URL): see dart_defines.example.json
+dart_defines.json

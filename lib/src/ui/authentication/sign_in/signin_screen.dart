@@ -160,7 +160,7 @@ class _FirebaseMissing extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
-        "Firebase isn't configured for the web yet. Run `flutterfire configure --platforms=web` or pass FIREBASE_WEB_API_KEY and FIREBASE_WEB_APP_ID."
+        "Firebase isn't configured for the web yet. Copy dart_defines.example.json to web/dart_defines.json and fill in FIREBASE_WEB_API_KEY and FIREBASE_WEB_APP_ID."
             .tr,
         style: const TextStyle(fontSize: 12),
       ),

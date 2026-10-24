@@ -9,8 +9,8 @@ the Django API (`~/Desktop/safarichap_api`). It only calls `/api/admin/*`, whose
 ```bash
 flutter pub get
 dart run build_runner build --delete-conflicting-outputs   # after editing models or Chopper services
-flutter run -d chrome --dart-define=API_URL=http://localhost:8000 \
-  --dart-define=FIREBASE_WEB_API_KEY=... --dart-define=FIREBASE_WEB_APP_ID=...
+cp dart_defines.example.json web/dart_defines.json          # once; gitignored, holds the Firebase web key
+flutter run -d chrome                                      # dart-defines still work and take priority
 flutter analyze && flutter test                            # keep both clean
 flutter build web --release
 ```
@@ -57,7 +57,7 @@ Before adding something, find the equivalent file in `~/Desktop/safarichap` and 
 - `package:web` / `dart:js_interop` only compile for the web. Browser-only code (CSV download) sits behind a conditional export (`core/utils/file_download.dart`) so `flutter test` still runs on the VM.
 - Loading indicators and skeletons animate forever, so widget tests must pump fixed frames (see `_settle` in `test/screens_smoke_test.dart`), not `pumpAndSettle`.
 - `IntrinsicHeight` around fl_chart (or anything with a `LayoutBuilder`) throws.
-- Firebase options come from `--dart-define` until `flutterfire configure --platforms=web` is run. Without them the sign-in screen shows a notice and stays disabled.
+- **No keys in source.** `Env` (`core/utils/env.dart`) takes `API_URL`, `FIREBASE_WEB_API_KEY` and `FIREBASE_WEB_APP_ID` from dart-defines, or else fetches `dart_defines.json` at startup (`web/dart_defines.json`, gitignored). Don't re-run `flutterfire configure`: it writes the key back into `lib/firebase_options.dart`. Without a key the sign-in screen shows a notice and stays disabled.
 
 ## Tests
 

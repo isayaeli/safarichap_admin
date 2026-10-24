@@ -8,3 +8,4 @@ tool/
 .flutter-plugins-dependencies
 .env
 .env.*
+web/dart_defines.json

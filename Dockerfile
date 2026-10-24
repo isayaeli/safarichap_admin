@@ -3,6 +3,8 @@
 #     --build-arg API_URL=https://api.safarichap.co.tz \
 #     --build-arg FIREBASE_WEB_API_KEY=... --build-arg FIREBASE_WEB_APP_ID=... .
 #   docker run -p 8081:80 safarichap-admin
+# Or build without the keys and supply them at run time:
+#   docker run -p 8081:80 -v $PWD/web/dart_defines.json:/usr/share/nginx/html/dart_defines.json:ro safarichap-admin
 FROM ghcr.io/cirruslabs/flutter:3.44.8 AS build
 WORKDIR /app
 COPY pubspec.yaml pubspec.lock ./

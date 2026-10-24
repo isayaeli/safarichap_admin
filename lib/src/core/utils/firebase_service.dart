@@ -8,7 +8,7 @@ import 'package:safarichap_admin/firebase_options.dart';
 Future<void> initFirebase() async {
   if (!DefaultFirebaseOptions.isConfigured) {
     log(
-      'Firebase web keys missing: run flutterfire configure or pass --dart-define',
+      'Firebase web keys missing: add web/dart_defines.json or pass --dart-define',
     );
     return;
   }

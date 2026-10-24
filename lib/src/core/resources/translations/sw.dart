@@ -226,8 +226,8 @@ const Map<String, String> sw = {
       "Inaleta viwango. Vitaonekana hapa baada ya sekunde chache.",
   "Files can be at most 10 MB.": "Faili zisizidi MB 10.",
   "Finance": "Fedha",
-  "Firebase isn't configured for the web yet. Run `flutterfire configure --platforms=web` or pass FIREBASE_WEB_API_KEY and FIREBASE_WEB_APP_ID.":
-      "Firebase bado haijawekwa kwa wavuti. Endesha `flutterfire configure --platforms=web` au weka FIREBASE_WEB_API_KEY na FIREBASE_WEB_APP_ID.",
+  "Firebase isn't configured for the web yet. Copy dart_defines.example.json to web/dart_defines.json and fill in FIREBASE_WEB_API_KEY and FIREBASE_WEB_APP_ID.":
+      "Firebase bado haijawekwa kwa wavuti. Nakili dart_defines.example.json kwenda web/dart_defines.json na ujaze FIREBASE_WEB_API_KEY na FIREBASE_WEB_APP_ID.",
   "Forgot password?": "Umesahau nenosiri?",
   "Frequency": "Mzunguko",
   "From (resident adult)": "Kuanzia (mkazi mtu mzima)",

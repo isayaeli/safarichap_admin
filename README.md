@@ -17,18 +17,20 @@ It talks to the Django API (`../safarichap_api`) under `/api/admin/`. The archit
    docker compose -f docker-compose.dev.yaml exec app python manage.py create_super_admin --email you@safarichap.co.tz --name "You"
    ```
    This creates the Firebase user if needed and prints a link to set your password.
-3. Register a **Web app** in the `safarichap` Firebase project and turn on the **Email/Password** sign-in provider in Firebase Console → Authentication. Then either:
-   - run `flutterfire configure --project=safarichap --platforms=web`, which rewrites `lib/firebase_options.dart`, or
-   - pass the Web app's keys at run time (below).
-4. Run:
+3. Turn on the **Email/Password** sign-in provider in Firebase Console → Authentication (project `safarichap`).
+4. Add the dashboard settings. They're kept out of git:
+   ```bash
+   cp dart_defines.example.json web/dart_defines.json
+   ```
+   Fill in `FIREBASE_WEB_API_KEY` from Firebase Console → Project settings → Your apps → `safarichap_admin`.
+5. Run:
    ```bash
    flutter pub get
    dart run build_runner build --delete-conflicting-outputs
-   flutter run -d chrome \
-     --dart-define=API_URL=http://localhost:8000 \
-     --dart-define=FIREBASE_WEB_API_KEY=... \
-     --dart-define=FIREBASE_WEB_APP_ID=...
+   flutter run -d chrome
    ```
+   No flags are needed: at startup the app reads `web/dart_defines.json` (it's served next to `index.html`).
+   A `--dart-define=KEY=value` or `--dart-define-from-file=web/dart_defines.json` still works and takes priority over the file.
 
 In DEBUG the API accepts any `http://localhost:<port>` origin. In production, add the dashboard's origin to the API's `CORS_ALLOWED_ORIGINS`.
 
