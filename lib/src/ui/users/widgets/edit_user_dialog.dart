@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:safarichap_admin/src/core/money/currency.dart';
 import 'package:safarichap_admin/src/data/models/enums.dart';
 import 'package:safarichap_admin/src/data/models/user/admin_user.dart';
+import 'package:safarichap_admin/src/core/utils/navigation.dart';
+import 'package:safarichap_admin/src/core/components/busy_button.dart';
 
 import '../users_controller.dart';
 
@@ -41,7 +43,7 @@ class _EditUserDialogState extends State<EditUserDialog> {
       'preferred_currency': _currency,
       'notifications_enabled': _notifications,
     });
-    if (ok) Get.back();
+    if (ok) closeDialog();
   }
 
   @override
@@ -119,11 +121,12 @@ class _EditUserDialogState extends State<EditUserDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: Get.back, child: Text("Cancel".tr)),
+        TextButton(onPressed: () => closeDialog(), child: Text("Cancel".tr)),
         Obx(
-          () => FilledButton(
-            onPressed: widget.controller.isSaving.value ? null : _save,
-            child: Text("Save".tr),
+          () => BusyButton(
+            busy: widget.controller.isSaving.value,
+            onPressed: _save,
+            label: "Save".tr,
           ),
         ),
       ],

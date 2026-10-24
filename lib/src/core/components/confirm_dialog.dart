@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:safarichap_admin/src/core/utils/navigation.dart';
 
 /// Asks before an action. Returns null when cancelled, otherwise the typed
 /// reason ('' when [reasonLabel] is null). With [reasonRequired] the confirm
@@ -43,7 +44,10 @@ Future<String?> confirmAction({
             ),
           ),
           actions: [
-            TextButton(onPressed: () => Get.back(), child: Text("Cancel".tr)),
+            TextButton(
+              onPressed: () => closeDialog(),
+              child: Text("Cancel".tr),
+            ),
             FilledButton(
               style: destructive
                   ? FilledButton.styleFrom(
@@ -52,7 +56,7 @@ Future<String?> confirmAction({
                     )
                   : null,
               onPressed: canConfirm
-                  ? () => Get.back(result: reason.text.trim())
+                  ? () => closeDialog(reason.text.trim())
                   : null,
               child: Text(confirmLabel ?? "Confirm".tr),
             ),
@@ -91,10 +95,10 @@ Future<String?> promptText({
         ),
       ),
       actions: [
-        TextButton(onPressed: () => Get.back(), child: Text("Cancel".tr)),
+        TextButton(onPressed: () => closeDialog(), child: Text("Cancel".tr)),
         FilledButton(
           onPressed: () {
-            if (text.text.trim().isNotEmpty) Get.back(result: text.text.trim());
+            if (text.text.trim().isNotEmpty) closeDialog(text.text.trim());
           },
           child: Text(confirmLabel ?? "Save".tr),
         ),

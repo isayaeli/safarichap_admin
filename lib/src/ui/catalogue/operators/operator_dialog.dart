@@ -5,6 +5,8 @@ import 'package:safarichap_admin/src/data/models/catalogue/catalogue.dart';
 import 'package:safarichap_admin/src/data/models/result.dart';
 import 'package:safarichap_admin/src/data/repositories/catalogue_repository.dart';
 import 'package:safarichap_admin/src/st/st.dart';
+import 'package:safarichap_admin/src/core/utils/navigation.dart';
+import 'package:safarichap_admin/src/core/components/busy_button.dart';
 
 import '../catalogue_controller.dart';
 
@@ -56,7 +58,7 @@ class _OperatorDialogState extends State<OperatorDialog> {
         'refund_policy': _policy,
       },
     );
-    if (ok) Get.back();
+    if (ok) closeDialog();
   }
 
   @override
@@ -145,11 +147,12 @@ class _OperatorDialogState extends State<OperatorDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: Get.back, child: Text("Cancel".tr)),
+        TextButton(onPressed: () => closeDialog(), child: Text("Cancel".tr)),
         Obx(
-          () => FilledButton(
-            onPressed: widget.controller.isSaving.value ? null : _save,
-            child: Text("Save".tr),
+          () => BusyButton(
+            busy: widget.controller.isSaving.value,
+            onPressed: _save,
+            label: "Save".tr,
           ),
         ),
       ],

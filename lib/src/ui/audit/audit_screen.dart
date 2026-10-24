@@ -7,6 +7,7 @@ import 'package:safarichap_admin/src/core/components/paged_table.dart';
 import 'package:safarichap_admin/src/core/utils/time_util.dart';
 import 'package:safarichap_admin/src/data/models/staff/staff.dart';
 import 'package:safarichap_admin/src/st/st.dart';
+import 'package:safarichap_admin/src/core/utils/navigation.dart';
 
 import 'audit_controller.dart';
 
@@ -201,7 +202,9 @@ class _AuditDetailDialog extends StatelessWidget {
           ),
         ),
       ),
-      actions: [TextButton(onPressed: Get.back, child: Text("Close".tr))],
+      actions: [
+        TextButton(onPressed: () => closeDialog(), child: Text("Close".tr)),
+      ],
     );
   }
 }

@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:safarichap_admin/src/core/components/confirm_dialog.dart';
 import 'package:safarichap_admin/src/core/utils/debouncer.dart';
 import 'package:safarichap_admin/src/data/models/enums.dart';
+import 'package:safarichap_admin/src/core/utils/navigation.dart';
+import 'package:safarichap_admin/src/core/components/busy_button.dart';
 
 import 'notifications_controller.dart';
 
@@ -64,7 +66,7 @@ class _BroadcastDialogState extends State<BroadcastDialog> {
       confirmLabel: "Send".tr,
     );
     if (ok == null) return;
-    if (await widget.controller.send(_body)) Get.back();
+    if (await widget.controller.send(_body)) closeDialog();
   }
 
   @override
@@ -177,16 +179,15 @@ class _BroadcastDialogState extends State<BroadcastDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: Get.back, child: Text("Cancel".tr)),
+        TextButton(onPressed: () => closeDialog(), child: Text("Cancel".tr)),
         Obx(
-          () => FilledButton.icon(
-            onPressed:
-                widget.controller.isSending.value ||
-                    (widget.controller.recipients.value ?? 0) == 0
+          () => BusyButton(
+            busy: widget.controller.isSending.value,
+            onPressed: (widget.controller.recipients.value ?? 0) == 0
                 ? null
                 : _send,
-            icon: const Icon(Icons.send, size: 18),
-            label: Text("Send".tr),
+            icon: Icons.send,
+            label: "Send".tr,
           ),
         ),
       ],

@@ -9,6 +9,8 @@ import 'package:safarichap_admin/src/core/utils/file_upload.dart';
 import 'package:safarichap_admin/src/data/models/catalogue/catalogue.dart';
 import 'package:safarichap_admin/src/data/repositories/catalogue_repository.dart';
 import 'package:safarichap_admin/src/st/st.dart';
+import 'package:safarichap_admin/src/core/utils/navigation.dart';
+import 'package:safarichap_admin/src/core/components/busy_button.dart';
 
 import '../catalogue_controller.dart';
 
@@ -153,7 +155,7 @@ class _DestinationDialogState extends State<_DestinationDialog> {
         'image': _image.text.trim(),
       },
     );
-    if (ok) Get.back();
+    if (ok) closeDialog();
   }
 
   @override
@@ -208,11 +210,12 @@ class _DestinationDialogState extends State<_DestinationDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: Get.back, child: Text("Cancel".tr)),
+        TextButton(onPressed: () => closeDialog(), child: Text("Cancel".tr)),
         Obx(
-          () => FilledButton(
-            onPressed: widget.controller.isSaving.value ? null : _save,
-            child: Text("Save".tr),
+          () => BusyButton(
+            busy: widget.controller.isSaving.value,
+            onPressed: _save,
+            label: "Save".tr,
           ),
         ),
       ],

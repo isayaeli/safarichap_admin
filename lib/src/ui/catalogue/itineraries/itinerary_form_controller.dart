@@ -13,6 +13,7 @@ class ItineraryFormController extends GetxController {
 
   final isLoading = true.obs;
   final isSaving = false.obs;
+  final isDeleting = false.obs;
   final itinerary = Rxn<ItineraryDetail>();
   final operators = <Operator>[].obs;
   final destinations = <Destination>[].obs;
@@ -83,7 +84,7 @@ class ItineraryFormController extends GetxController {
     await _catalogueRepository
         .delete(CatalogueRepository.itineraries, id)
         .execute((result) {
-          isSaving.value = result is Loading;
+          isDeleting.value = result is Loading;
           if (result is Success) {
             ok = true;
             showSuccessSnack("Trip deleted".tr);

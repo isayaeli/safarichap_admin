@@ -7,6 +7,8 @@ import 'package:safarichap_admin/src/core/utils/time_util.dart';
 import 'package:safarichap_admin/src/data/models/system/system.dart';
 import 'package:safarichap_admin/src/st/st.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:safarichap_admin/src/core/utils/navigation.dart';
+import 'package:safarichap_admin/src/core/components/busy_button.dart';
 
 import 'fx_controller.dart';
 
@@ -122,12 +124,12 @@ class _FxScreenState extends State<FxScreen> {
               actions: [
                 PermissionGate(
                   code: 'fx.manage',
-                  child: OutlinedButton.icon(
-                    onPressed: _controller.isSaving.value
-                        ? null
-                        : _controller.fetchFromProvider,
-                    icon: const Icon(Icons.cloud_download_outlined, size: 18),
-                    label: Text("Fetch from provider".tr),
+                  child: BusyButton(
+                    kind: BusyButtonKind.outlined,
+                    busy: _controller.isSaving.value,
+                    onPressed: _controller.fetchFromProvider,
+                    icon: Icons.cloud_download_outlined,
+                    label: "Fetch from provider".tr,
                   ),
                 ),
                 PermissionGate(
@@ -210,7 +212,7 @@ class _OverrideDialogState extends State<_OverrideDialog> {
   Future<void> _save() async {
     final f = _fraction(_rate.text);
     if (f == null) return;
-    if (await widget.controller.setRate(_currency, f.$1, f.$2)) Get.back();
+    if (await widget.controller.setRate(_currency, f.$1, f.$2)) closeDialog();
   }
 
   @override
@@ -268,11 +270,12 @@ class _OverrideDialogState extends State<_OverrideDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: Get.back, child: Text("Cancel".tr)),
+        TextButton(onPressed: () => closeDialog(), child: Text("Cancel".tr)),
         Obx(
-          () => FilledButton(
-            onPressed: widget.controller.isSaving.value ? null : _save,
-            child: Text("Save".tr),
+          () => BusyButton(
+            busy: widget.controller.isSaving.value,
+            onPressed: _save,
+            label: "Save".tr,
           ),
         ),
       ],

@@ -5,6 +5,8 @@ import 'package:safarichap_admin/src/core/components/progressed_button.dart';
 import 'package:safarichap_admin/src/core/utils/firebase_service.dart';
 import 'package:safarichap_admin/src/st/st.dart';
 import 'package:safarichap_admin/src/ui/onboarding/decision_tree.dart';
+import 'package:safarichap_admin/src/core/utils/navigation.dart';
+import 'package:safarichap_admin/src/core/components/busy_button.dart';
 
 import 'signin_controller.dart';
 
@@ -135,13 +137,12 @@ class _SignInScreenState extends State<SignInScreen> {
           ),
         ),
         actions: [
-          TextButton(onPressed: Get.back, child: Text("Cancel".tr)),
+          TextButton(onPressed: () => closeDialog(), child: Text("Cancel".tr)),
           Obx(
-            () => FilledButton(
-              onPressed: _controller.isSendingReset.value
-                  ? null
-                  : () => _controller.sendPasswordReset(email.text),
-              child: Text("Send link".tr),
+            () => BusyButton(
+              busy: _controller.isSendingReset.value,
+              onPressed: () => _controller.sendPasswordReset(email.text),
+              label: "Send link".tr,
             ),
           ),
         ],

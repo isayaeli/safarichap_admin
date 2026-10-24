@@ -5,6 +5,7 @@ import 'package:safarichap_admin/src/core/components/section_card.dart';
 import 'package:safarichap_admin/src/core/utils/time_util.dart';
 import 'package:safarichap_admin/src/data/models/system/system.dart';
 import 'package:safarichap_admin/src/st/st.dart';
+import 'package:safarichap_admin/src/core/components/busy_button.dart';
 
 import 'settings_controller.dart';
 
@@ -108,10 +109,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
           actions: [
             PermissionGate(
               code: 'settings.manage',
-              child: FilledButton.icon(
-                onPressed: _controller.isSaving.value ? null : _save,
-                icon: const Icon(Icons.save_outlined, size: 18),
-                label: Text("Save".tr),
+              child: BusyButton(
+                kind: BusyButtonKind.filled,
+                busy: _controller.isSaving.value,
+                onPressed: _save,
+                icon: Icons.save_outlined,
+                label: "Save".tr,
               ),
             ),
           ],

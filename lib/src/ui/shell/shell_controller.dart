@@ -38,5 +38,7 @@ class ShellController extends GetxController {
     duration: 150.milliseconds,
   );
 
-  void back<T>([T? result]) => Get.back<T>(result: result, id: navigatorId);
+  /// Not `Get.back(id:)`: that closes a visible snackbar instead of the page.
+  void back<T>([T? result]) =>
+      Get.keys[navigatorId]?.currentState?.maybePop<T>(result);
 }

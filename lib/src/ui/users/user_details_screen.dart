@@ -13,6 +13,7 @@ import 'package:safarichap_admin/src/ui/goals/goal_details_screen.dart';
 import 'package:safarichap_admin/src/ui/payments/payment_details_screen.dart';
 import 'package:safarichap_admin/src/ui/shell/shell_controller.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:safarichap_admin/src/core/components/busy_button.dart';
 
 import 'users_controller.dart';
 import 'widgets/edit_user_dialog.dart';
@@ -86,15 +87,12 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             ),
             PermissionGate(
               code: 'users.manage',
-              child: FilledButton.tonalIcon(
-                onPressed: _controller.isSaving.value
-                    ? null
-                    : () => _toggleActive(user),
-                icon: Icon(
-                  user.is_active ? Icons.block : Icons.check_circle_outline,
-                  size: 18,
-                ),
-                label: Text(user.is_active ? "Disable".tr : "Enable".tr),
+              child: BusyButton(
+                kind: BusyButtonKind.tonal,
+                busy: _controller.isSaving.value,
+                onPressed: () => _toggleActive(user),
+                icon: user.is_active ? Icons.block : Icons.check_circle_outline,
+                label: user.is_active ? "Disable".tr : "Enable".tr,
               ),
             ),
           ],

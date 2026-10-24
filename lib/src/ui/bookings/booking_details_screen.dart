@@ -12,6 +12,7 @@ import 'package:safarichap_admin/src/ui/goals/goal_details_screen.dart';
 import 'package:safarichap_admin/src/ui/shell/shell_controller.dart';
 import 'package:safarichap_admin/src/ui/users/user_details_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:safarichap_admin/src/core/components/busy_button.dart';
 
 import 'bookings_controller.dart';
 import 'widgets/document_dialog.dart';
@@ -107,12 +108,14 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
             ),
             PermissionGate(
               code: 'bookings.manage',
-              child: OutlinedButton.icon(
+              child: BusyButton(
+                kind: BusyButtonKind.outlined,
+                busy: _controller.isNotifying.value,
                 onPressed: _controller.isSaving.value
                     ? null
                     : _controller.notifyTraveller,
-                icon: const Icon(Icons.notifications_active_outlined, size: 18),
-                label: Text("Notify traveller".tr),
+                icon: Icons.notifications_active_outlined,
+                label: "Notify traveller".tr,
               ),
             ),
           ],

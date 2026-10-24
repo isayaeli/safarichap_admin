@@ -54,6 +54,8 @@ Before adding something, find the equivalent file in `~/Desktop/safarichap` and 
 ## Gotchas
 
 - In an extension on chopper's `Response`, write **`this.body`**. A bare `body` resolves to chopper's top-level `@body` annotation constant and every parse fails with "type 'Body' is not a subtype of …".
+- **Never `Get.back()`.** In GetX 4 it closes a visible snackbar *instead of* the dialog/page, and saves show a success snack first, so the dialog stays open. Close dialogs with `closeDialog([result])` (`core/utils/navigation.dart`) and content pages with `shell.back()`.
+- Buttons that send a request use `BusyButton(busy: controller.isX.value, ...)` (`core/components/busy_button.dart`): spinner in place of the icon, taps ignored while busy. Give each action its own flag when several buttons share a screen (e.g. `GoalDetailController.acting`).
 - `package:web` / `dart:js_interop` only compile for the web. Browser-only code (CSV download) sits behind a conditional export (`core/utils/file_download.dart`) so `flutter test` still runs on the VM.
 - Loading indicators and skeletons animate forever, so widget tests must pump fixed frames (see `_settle` in `test/screens_smoke_test.dart`), not `pumpAndSettle`.
 - `IntrinsicHeight` around fl_chart (or anything with a `LayoutBuilder`) throws.

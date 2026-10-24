@@ -11,6 +11,7 @@ import 'package:safarichap_admin/src/data/models/catalogue/catalogue.dart';
 import 'package:safarichap_admin/src/data/models/enums.dart';
 import 'package:safarichap_admin/src/st/st.dart';
 import 'package:safarichap_admin/src/ui/shell/shell_controller.dart';
+import 'package:safarichap_admin/src/core/components/busy_button.dart';
 
 import 'itinerary_form_controller.dart';
 import 'widgets/editors.dart';
@@ -238,10 +239,14 @@ class _ItineraryFormScreenState extends State<ItineraryFormScreen> {
           if (widget.uuid != null)
             PermissionGate(
               code: 'catalogue.manage',
-              child: TextButton.icon(
-                onPressed: _delete,
-                icon: const Icon(Icons.delete_outline),
-                label: Text("Delete".tr),
+              child: Obx(
+                () => BusyButton(
+                  kind: BusyButtonKind.text,
+                  busy: _controller.isDeleting.value,
+                  onPressed: _controller.isSaving.value ? null : _delete,
+                  icon: Icons.delete_outline,
+                  label: "Delete".tr,
+                ),
               ),
             ),
           PermissionGate(
@@ -249,12 +254,13 @@ class _ItineraryFormScreenState extends State<ItineraryFormScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Obx(
-                () => FilledButton.icon(
-                  onPressed: _controller.isSaving.value || !_ready
+                () => BusyButton(
+                  busy: _controller.isSaving.value,
+                  onPressed: _controller.isDeleting.value || !_ready
                       ? null
                       : _save,
-                  icon: const Icon(Icons.save_outlined, size: 18),
-                  label: Text("Save".tr),
+                  icon: Icons.save_outlined,
+                  label: "Save".tr,
                 ),
               ),
             ),

@@ -16,6 +16,7 @@ import 'package:safarichap_admin/src/ui/bookings/booking_details_screen.dart';
 import 'package:safarichap_admin/src/ui/payments/payment_details_screen.dart';
 import 'package:safarichap_admin/src/ui/shell/shell_controller.dart';
 import 'package:safarichap_admin/src/ui/users/user_details_screen.dart';
+import 'package:safarichap_admin/src/core/components/busy_button.dart';
 
 import 'goals_controller.dart';
 import 'widgets/goal_progress.dart';
@@ -132,7 +133,8 @@ class _GoalDetailsScreenState extends State<GoalDetailsScreen> {
         if (goal == null) {
           return const Center(child: CircularProgressIndicator());
         }
-        final busy = _controller.isActing.value;
+        final acting = _controller.acting.value;
+        final busy = acting != null;
         final currency = Currency.fromCode(goal.currency);
         Money m(int minor) => Money(minor, currency);
 
@@ -154,27 +156,35 @@ class _GoalDetailsScreenState extends State<GoalDetailsScreen> {
                 spacing: 8,
                 children: [
                   if (goal.status == GoalStatus.active)
-                    OutlinedButton(
+                    BusyButton(
+                      kind: BusyButtonKind.outlined,
+                      busy: acting == 'pause',
                       onPressed: busy ? null : () => _pause(goal),
-                      child: Text("Pause".tr),
+                      label: "Pause".tr,
                     ),
                   if (goal.status == GoalStatus.paused)
-                    OutlinedButton(
+                    BusyButton(
+                      kind: BusyButtonKind.outlined,
+                      busy: acting == 'resume',
                       onPressed: busy ? null : _resume,
-                      child: Text("Resume".tr),
+                      label: "Resume".tr,
                     ),
                   if (_reschedulable.contains(goal.status))
-                    OutlinedButton(
+                    BusyButton(
+                      kind: BusyButtonKind.outlined,
+                      busy: acting == 'reschedule',
                       onPressed: busy ? null : () => _reschedule(goal),
-                      child: Text("Reschedule".tr),
+                      label: "Reschedule".tr,
                     ),
                   if (_cancellable.contains(goal.status))
-                    FilledButton.tonal(
+                    BusyButton(
+                      kind: BusyButtonKind.tonal,
                       style: FilledButton.styleFrom(
                         foregroundColor: Theme.of(context).colorScheme.error,
                       ),
+                      busy: acting == 'cancel',
                       onPressed: busy ? null : () => _cancel(goal),
-                      child: Text("Cancel goal".tr),
+                      label: "Cancel goal".tr,
                     ),
                 ],
               ),
