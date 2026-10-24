@@ -81,6 +81,7 @@ const Map<String, String> sw = {
       "Inauliza mtoa huduma hali ya malipo haya sasa. Yakiwa yamefanikiwa, yanaingizwa kwenye lengo; muda ukipita bila uthibitisho, yanawekwa kuwa yameshindwa.",
   "At least (days)": "Angalau (siku)",
   "Attempts": "Majaribio",
+  "Attempts: @n": "Majaribio: @n",
   "Audience": "Wapokeaji",
   "Audit log": "Kumbukumbu za ukaguzi",
   "Authentication failed. Please try again.":
