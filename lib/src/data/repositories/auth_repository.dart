@@ -9,6 +9,14 @@ class AuthRepository {
   bool get isSignedIn =>
       isFirebaseReady && FirebaseAuth.instance.currentUser != null;
 
+  /// Emits whenever someone signs in or out (including token expiry).
+  Stream<bool> get signedInChanges => isFirebaseReady
+      ? FirebaseAuth.instance
+            .authStateChanges()
+            .map((user) => user != null)
+            .distinct()
+      : const Stream.empty();
+
   String? get email =>
       isFirebaseReady ? FirebaseAuth.instance.currentUser?.email : null;
 

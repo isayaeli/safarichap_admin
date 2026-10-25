@@ -10,8 +10,8 @@ import 'package:safarichap_admin/src/data/models/enums.dart';
 import 'package:safarichap_admin/src/data/models/goal/goal.dart';
 import 'package:safarichap_admin/src/st/st.dart';
 import 'package:safarichap_admin/src/ui/shell/shell_controller.dart';
+import 'package:safarichap_admin/src/routes/app_routes.dart';
 
-import 'goal_details_screen.dart';
 import 'goals_controller.dart';
 import 'widgets/goal_progress.dart';
 
@@ -41,7 +41,7 @@ class _GoalsScreenState extends State<GoalsScreen> {
         emptyMessage: 'No goals match',
         minWidth: 740,
         onTap: (g) async {
-          await _shell.open(GoalDetailsScreen(uuid: g.uuid));
+          await _shell.open(AppRoutes.goal(g.uuid));
           _controller.load();
         },
         filters: [

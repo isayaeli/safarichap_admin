@@ -10,8 +10,8 @@ import 'package:safarichap_admin/src/data/models/user/admin_user.dart';
 import 'package:safarichap_admin/src/st/st.dart';
 import 'package:safarichap_admin/src/ui/shell/shell_controller.dart';
 import 'package:safarichap_admin/src/core/components/busy_button.dart';
+import 'package:safarichap_admin/src/routes/app_routes.dart';
 
-import 'user_details_screen.dart';
 import 'users_controller.dart';
 
 class UsersScreen extends StatefulWidget {
@@ -39,7 +39,7 @@ class _UsersScreenState extends State<UsersScreen> {
         searchHint: 'Name, phone or email',
         emptyMessage: 'No customers match',
         onTap: (u) async {
-          await _shell.open(UserDetailsScreen(uuid: u.uuid));
+          await _shell.open(AppRoutes.customer(u.uuid));
           _controller.load();
         },
         filters: [

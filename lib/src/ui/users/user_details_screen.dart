@@ -9,11 +9,10 @@ import 'package:safarichap_admin/src/core/money/money_formatter.dart';
 import 'package:safarichap_admin/src/core/utils/time_util.dart';
 import 'package:safarichap_admin/src/data/models/user/admin_user.dart';
 import 'package:safarichap_admin/src/st/st.dart';
-import 'package:safarichap_admin/src/ui/goals/goal_details_screen.dart';
-import 'package:safarichap_admin/src/ui/payments/payment_details_screen.dart';
 import 'package:safarichap_admin/src/ui/shell/shell_controller.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:safarichap_admin/src/core/components/busy_button.dart';
+import 'package:safarichap_admin/src/routes/app_routes.dart';
 
 import 'users_controller.dart';
 import 'widgets/edit_user_dialog.dart';
@@ -149,7 +148,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                   'Total',
                   'Travel date',
                 ],
-                onTap: (g) => _shell.open(GoalDetailsScreen(uuid: g.uuid)),
+                onTap: (g) => _shell.open(AppRoutes.goal(g.uuid)),
                 emptyMessage: 'No goals yet',
                 cells: (g) => [
                   Text(g.title),
@@ -171,7 +170,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                   'Status',
                   'Receipt',
                 ],
-                onTap: (p) => _shell.open(PaymentDetailsScreen(uuid: p.uuid)),
+                onTap: (p) => _shell.open(AppRoutes.payment(p.uuid)),
                 emptyMessage: 'No payments yet',
                 cells: (p) => [
                   Text(TimeUtil.formatDateTime(p.created_at)),

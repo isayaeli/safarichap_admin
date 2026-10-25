@@ -9,8 +9,8 @@ import 'package:safarichap_admin/src/data/models/enums.dart';
 import 'package:safarichap_admin/src/data/models/payment/payment.dart';
 import 'package:safarichap_admin/src/st/st.dart';
 import 'package:safarichap_admin/src/ui/shell/shell_controller.dart';
+import 'package:safarichap_admin/src/routes/app_routes.dart';
 
-import 'payment_details_screen.dart';
 import 'payments_controller.dart';
 
 class PaymentsScreen extends StatefulWidget {
@@ -39,7 +39,7 @@ class _PaymentsScreenState extends State<PaymentsScreen> {
         emptyMessage: 'No payments match',
         minWidth: 740,
         onTap: (p) async {
-          await _shell.open(PaymentDetailsScreen(uuid: p.uuid));
+          await _shell.open(AppRoutes.payment(p.uuid));
           _controller.load();
         },
         filters: [

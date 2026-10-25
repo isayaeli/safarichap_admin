@@ -30,12 +30,27 @@ Before adding something, find the equivalent file in `~/Desktop/safarichap` and 
   - Every table screen extends `PagedController<T>` (page/search/filters/ordering → DRF query params) and renders `PagedTable<T>`.
   - The catalogue reuses `CatalogueController<T>` with the resource name as the Get tag.
 - **Controller lifetime:**
-  - Screens `Get.put` their controller in a State field and `Get.delete` it in `dispose`. The nested content navigator isn't watched by GetX's route-based cleanup, so screens must clean up themselves.
+  - Screens `Get.put` their controller in a State field and `Get.delete` it in `dispose`. Pages are go_router routes, which GetX's route-based cleanup doesn't watch, so screens must clean up themselves.
   - Detail pages tag the controller `'${uuid}#${identityHashCode(this)}'`, because the same record can be open twice.
-- **Navigation:**
-  - `ShellScreen` = side nav (collapsible; a drawer under 1000 px) + top bar + a nested `Navigator` (`Get.nestedKey(ShellController.navigatorId)`).
-  - Open detail and form pages with `shell.open(Page())` so the side nav stays. Go back with `shell.back()`. Dialogs use `Get.dialog`.
-  - `SectionRoot` maps `AdminSection` → list screen. There are no `GetPage` routes, and a browser refresh returns to the first section.
+- **Navigation: every page has a URL** (go_router, path strategy, so no `#`).
+  - `lib/src/routes/app_router.dart` builds the `GoRouter` inside `GetMaterialApp.router`, with `navigatorKey: Get.key` so `Get.dialog`, snackbars and `closeDialog()` keep using the root navigator.
+  - **Routes:**
+    - Section list URLs are `AdminSection.path` (`/customers`, `/goals`, …).
+    - Detail and form URLs are in `routes/app_routes.dart` (`AppRoutes.customer(uuid)` → `/customers/<uuid>`).
+    - `/sign-in`, `/loading` and `/no-access` render outside the shell.
+  - **`redirect`** sends:
+    - signed-out users to `/sign-in?from=<url>`;
+    - while `/me` loads, to `/loading`;
+    - non-staff to `/no-access`;
+    - a section without its `.view` permission to the first allowed section.
+
+    It re-runs on `SessionController.routerRefresh`.
+  - **`ShellScreen`** = side nav (collapsible; a drawer under 1000 px) + top bar + the routed page. It's built by a `ShellRoute` from the current location.
+  - **Moving around:**
+    - Go to a section with `shell.select(section)`.
+    - Open a detail or form page with `shell.open(AppRoutes.x(uuid))`, which pushes it, updates the address bar, and completes when the page closes.
+    - Close with `shell.back()`, which goes to the section list when the page was opened from a link.
+  - **New screen = new route.** Add it in `app_router.dart` and a path helper in `AppRoutes`. Never push widgets directly.
 - **Permissions:**
   - Gate UI with `PermissionGate(code: 'x.manage', child: ...)` or `can('x.manage')`.
   - A section shows only if the user has its `AdminSection.permission` (a `.view` code).

@@ -2,42 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:safarichap_admin/src/core/components/safari_logo.dart';
 import 'package:safarichap_admin/src/core/resources/colors.dart';
-import 'package:safarichap_admin/src/ui/authentication/sign_in/signin_screen.dart';
 import 'package:safarichap_admin/src/ui/onboarding/session_controller.dart';
-import 'package:safarichap_admin/src/ui/shell/shell_screen.dart';
 
-/// Picks the first screen: sign-in, "no access" (signed in but not staff), or
-/// the dashboard once `GET /api/admin/me/` returns the staff profile.
-class DecisionTree extends StatefulWidget {
-  const DecisionTree({super.key});
-
-  @override
-  State<DecisionTree> createState() => _DecisionTreeState();
-}
-
-class _DecisionTreeState extends State<DecisionTree> {
-  final SessionController _session = Get.find();
-
-  @override
-  void initState() {
-    if (_session.isSignedIn) {
-      _session.loadMe();
-    }
-    super.initState();
-  }
+/// Shown while `GET /api/admin/me/` loads after sign-in; offers a retry if it fails.
+/// The router leaves this page once the staff profile arrives.
+class LoadingScreen extends StatelessWidget {
+  const LoadingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    if (!_session.isSignedIn) return const SignInScreen();
-
-    return Obx(() {
-      if (_session.me.value != null) return const ShellScreen();
-      if (_session.noAccess.value) return const NoAccessScreen();
-      if (_session.loadFailed.value) {
-        return _RetryScreen(onRetry: _session.loadMe);
-      }
-      return const SplashScreen();
-    });
+    final SessionController session = Get.find();
+    return Obx(
+      () => session.loadFailed.value
+          ? _RetryScreen(onRetry: session.loadMe)
+          : const SplashScreen(),
+    );
   }
 }
 

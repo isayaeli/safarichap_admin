@@ -32,7 +32,8 @@ class Env {
     if (_complete) return;
     try {
       final response = await http
-          .get(Uri.base.resolve(fileName))
+          // From the site root: Uri.base is the current page, e.g. /goals/<uuid>.
+          .get(Uri.base.resolve('/$fileName'))
           .timeout(const Duration(seconds: 5));
       if (response.statusCode != 200) return;
       final json = jsonDecode(response.body);

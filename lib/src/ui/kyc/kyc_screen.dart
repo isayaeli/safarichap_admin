@@ -10,7 +10,7 @@ import 'package:safarichap_admin/src/data/models/enums.dart';
 import 'package:safarichap_admin/src/data/models/user/admin_user.dart';
 import 'package:safarichap_admin/src/st/st.dart';
 import 'package:safarichap_admin/src/ui/shell/shell_controller.dart';
-import 'package:safarichap_admin/src/ui/users/user_details_screen.dart';
+import 'package:safarichap_admin/src/routes/app_routes.dart';
 
 import 'kyc_controller.dart';
 
@@ -65,7 +65,7 @@ class _KycScreenState extends State<KycScreen> {
         controller: _controller,
         searchHint: 'Customer name, phone or email',
         emptyMessage: 'No documents to review',
-        onTap: (d) => _shell.open(UserDetailsScreen(uuid: d.user.uuid)),
+        onTap: (d) => _shell.open(AppRoutes.customer(d.user.uuid)),
         filters: [
           FilterDropdown<String>(
             label: 'Status',

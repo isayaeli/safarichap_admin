@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:safarichap_admin/src/core/components/progressed_button.dart';
 import 'package:safarichap_admin/src/core/utils/firebase_service.dart';
 import 'package:safarichap_admin/src/st/st.dart';
-import 'package:safarichap_admin/src/ui/onboarding/decision_tree.dart';
+import 'package:safarichap_admin/src/ui/onboarding/startup_screens.dart';
 import 'package:safarichap_admin/src/core/utils/navigation.dart';
 import 'package:safarichap_admin/src/core/components/busy_button.dart';
 
