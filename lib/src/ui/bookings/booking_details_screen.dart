@@ -8,11 +8,10 @@ import 'package:safarichap_admin/src/core/utils/time_util.dart';
 import 'package:safarichap_admin/src/data/models/booking/booking.dart';
 import 'package:safarichap_admin/src/data/models/enums.dart';
 import 'package:safarichap_admin/src/st/st.dart';
-import 'package:safarichap_admin/src/ui/goals/goal_details_screen.dart';
 import 'package:safarichap_admin/src/ui/shell/shell_controller.dart';
-import 'package:safarichap_admin/src/ui/users/user_details_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:safarichap_admin/src/core/components/busy_button.dart';
+import 'package:safarichap_admin/src/routes/app_routes.dart';
 
 import 'bookings_controller.dart';
 import 'widgets/document_dialog.dart';
@@ -127,8 +126,7 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                   InfoRow(
                     label: "Customer".tr,
                     child: InkWell(
-                      onTap: () =>
-                          _shell.open(UserDetailsScreen(uuid: b.user.uuid)),
+                      onTap: () => _shell.open(AppRoutes.customer(b.user.uuid)),
                       child: Text(b.user.displayName, style: link),
                     ),
                   ),
@@ -136,8 +134,7 @@ class _BookingDetailsScreenState extends State<BookingDetailsScreen> {
                   InfoRow(
                     label: "Goal".tr,
                     child: InkWell(
-                      onTap: () =>
-                          _shell.open(GoalDetailsScreen(uuid: b.goal_uuid)),
+                      onTap: () => _shell.open(AppRoutes.goal(b.goal_uuid)),
                       child: Text("Open goal".tr, style: link),
                     ),
                   ),

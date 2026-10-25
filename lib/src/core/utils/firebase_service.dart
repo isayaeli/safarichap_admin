@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:safarichap_admin/firebase_options.dart';
 
@@ -15,6 +16,12 @@ Future<void> initFirebase() async {
   try {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
+    );
+    // On the web the signed-in user is restored asynchronously. Wait for it so
+    // the router's first redirect knows whether someone is signed in.
+    await FirebaseAuth.instance.authStateChanges().first.timeout(
+      const Duration(seconds: 5),
+      onTimeout: () => null,
     );
   } catch (e) {
     log('Firebase not configured yet: $e');

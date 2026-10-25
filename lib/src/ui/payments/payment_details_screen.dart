@@ -10,10 +10,9 @@ import 'package:safarichap_admin/src/core/money/money_formatter.dart';
 import 'package:safarichap_admin/src/core/utils/time_util.dart';
 import 'package:safarichap_admin/src/data/models/enums.dart';
 import 'package:safarichap_admin/src/st/st.dart';
-import 'package:safarichap_admin/src/ui/goals/goal_details_screen.dart';
 import 'package:safarichap_admin/src/ui/shell/shell_controller.dart';
-import 'package:safarichap_admin/src/ui/users/user_details_screen.dart';
 import 'package:safarichap_admin/src/core/components/busy_button.dart';
+import 'package:safarichap_admin/src/routes/app_routes.dart';
 
 import 'payments_controller.dart';
 
@@ -87,16 +86,14 @@ class _PaymentDetailsScreenState extends State<PaymentDetailsScreen> {
                   InfoRow(
                     label: "Customer".tr,
                     child: InkWell(
-                      onTap: () =>
-                          _shell.open(UserDetailsScreen(uuid: p.user.uuid)),
+                      onTap: () => _shell.open(AppRoutes.customer(p.user.uuid)),
                       child: Text(p.user.displayName, style: link),
                     ),
                   ),
                   InfoRow(
                     label: "Goal".tr,
                     child: InkWell(
-                      onTap: () =>
-                          _shell.open(GoalDetailsScreen(uuid: p.goal_uuid)),
+                      onTap: () => _shell.open(AppRoutes.goal(p.goal_uuid)),
                       child: Text(p.goal_title, style: link),
                     ),
                   ),

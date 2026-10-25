@@ -12,11 +12,9 @@ import 'package:safarichap_admin/src/core/utils/time_util.dart';
 import 'package:safarichap_admin/src/data/models/enums.dart';
 import 'package:safarichap_admin/src/data/models/goal/goal.dart';
 import 'package:safarichap_admin/src/st/st.dart';
-import 'package:safarichap_admin/src/ui/bookings/booking_details_screen.dart';
-import 'package:safarichap_admin/src/ui/payments/payment_details_screen.dart';
 import 'package:safarichap_admin/src/ui/shell/shell_controller.dart';
-import 'package:safarichap_admin/src/ui/users/user_details_screen.dart';
 import 'package:safarichap_admin/src/core/components/busy_button.dart';
+import 'package:safarichap_admin/src/routes/app_routes.dart';
 
 import 'goals_controller.dart';
 import 'widgets/goal_progress.dart';
@@ -146,7 +144,7 @@ class _GoalDetailsScreenState extends State<GoalDetailsScreen> {
             if (goal.booking_uuid != null)
               OutlinedButton.icon(
                 onPressed: () =>
-                    _shell.open(BookingDetailsScreen(uuid: goal.booking_uuid!)),
+                    _shell.open(AppRoutes.booking(goal.booking_uuid!)),
                 icon: const Icon(Icons.confirmation_number_outlined, size: 18),
                 label: Text("Booking".tr),
               ),
@@ -203,9 +201,8 @@ class _GoalDetailsScreenState extends State<GoalDetailsScreen> {
                       InfoRow(
                         label: "Customer".tr,
                         child: InkWell(
-                          onTap: () => _shell.open(
-                            UserDetailsScreen(uuid: goal.user.uuid),
-                          ),
+                          onTap: () =>
+                              _shell.open(AppRoutes.customer(goal.user.uuid)),
                           child: Text(
                             goal.user.displayName,
                             style: TextStyle(
@@ -310,7 +307,7 @@ class _GoalDetailsScreenState extends State<GoalDetailsScreen> {
                   'Receipt',
                 ],
                 emptyMessage: 'No payments yet',
-                onTap: (p) => _shell.open(PaymentDetailsScreen(uuid: p.uuid)),
+                onTap: (p) => _shell.open(AppRoutes.payment(p.uuid)),
                 cells: (p) => [
                   Text(TimeUtil.formatDateTime(p.created_at)),
                   Text(p.money.formatted),

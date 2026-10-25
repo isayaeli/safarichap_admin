@@ -8,80 +8,82 @@ import 'package:safarichap_admin/src/st/st.dart';
 import 'package:safarichap_admin/src/ui/onboarding/session_controller.dart';
 
 import 'admin_section.dart';
-import 'section_root.dart';
 import 'shell_controller.dart';
 
-/// Side navigation + top bar around a nested navigator for the content.
+/// Side navigation + top bar around the current page ([child], from the
+/// router's ShellRoute). [location] is the URL path; it picks the highlighted
+/// section, the title and the browser tab title.
 class ShellScreen extends StatelessWidget {
-  const ShellScreen({super.key});
+  final String location;
+  final Widget child;
+  const ShellScreen({super.key, required this.location, required this.child});
 
   static const _wideBreakpoint = 1000.0;
 
   @override
   Widget build(BuildContext context) {
-    final ShellController shell = Get.find();
     final SessionController session = Get.find();
     final sections = AdminSection.values
         .where((s) => session.can(s.permission))
         .toList();
-    if (sections.isNotEmpty && !sections.contains(shell.section.value)) {
-      // e.g. a Content editor has no Overview: open their first section.
-      WidgetsBinding.instance.addPostFrameCallback(
-        (_) => shell.section.value = sections.first,
-      );
-    }
+    final current = AdminSection.fromLocation(location);
 
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final wide = constraints.maxWidth >= _wideBreakpoint;
-        final content = Navigator(
-          key: Get.nestedKey(ShellController.navigatorId),
-          onGenerateRoute: (settings) =>
-              MaterialPageRoute(builder: (_) => const SectionRoot()),
-        );
-        return Scaffold(
-          drawer: wide
-              ? null
-              : Drawer(
-                  child: _SideNav(
-                    sections: sections,
-                    extended: true,
-                    inDrawer: true,
+    return Title(
+      title: current == null
+          ? "SafariChap Admin"
+          : '${current.label} · SafariChap Admin',
+      color: safariChapColors.secondaryColor!,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          final wide = constraints.maxWidth >= _wideBreakpoint;
+          return Scaffold(
+            drawer: wide
+                ? null
+                : Drawer(
+                    child: _SideNav(
+                      sections: sections,
+                      current: current,
+                      extended: true,
+                      inDrawer: true,
+                    ),
+                  ),
+            body: Row(
+              children: [
+                if (wide)
+                  Obx(
+                    () => _SideNav(
+                      sections: sections,
+                      current: current,
+                      extended: Get.find<ShellController>().railExtended.value,
+                    ),
+                  ),
+                if (wide) const VerticalDivider(width: 1),
+                Expanded(
+                  child: Column(
+                    children: [
+                      _TopBar(showMenu: !wide, title: current?.label ?? ''),
+                      const Divider(height: 1),
+                      Expanded(child: child),
+                    ],
                   ),
                 ),
-          body: Row(
-            children: [
-              if (wide)
-                Obx(
-                  () => _SideNav(
-                    sections: sections,
-                    extended: shell.railExtended.value,
-                  ),
-                ),
-              if (wide) const VerticalDivider(width: 1),
-              Expanded(
-                child: Column(
-                  children: [
-                    _TopBar(showMenu: !wide),
-                    const Divider(height: 1),
-                    Expanded(child: content),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        );
-      },
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
 
 class _SideNav extends StatelessWidget {
   final List<AdminSection> sections;
+  final AdminSection? current;
   final bool extended;
   final bool inDrawer;
   const _SideNav({
     required this.sections,
+    required this.current,
     required this.extended,
     this.inDrawer = false,
   });
@@ -116,65 +118,71 @@ class _SideNav extends StatelessWidget {
         );
       }
       children.add(
-        Obx(() {
-          final selected = shell.section.value == section;
-          final item = Material(
-            color: selected
-                ? safariChapColors.primaryColor!.withValues(alpha: 0.22)
-                : Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: InkWell(
-              borderRadius: BorderRadius.circular(10),
-              onTap: () {
-                shell.select(section);
-                if (inDrawer) Navigator.of(context).pop();
-              },
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: extended ? 12 : 0,
-                  vertical: 10,
-                ),
-                child: Row(
-                  mainAxisAlignment: extended
-                      ? MainAxisAlignment.start
-                      : MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      section.icon,
-                      size: 20,
-                      color: selected ? selectedColor : scheme.onSurfaceVariant,
-                    ),
-                    if (extended) ...[
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: Text(
-                          section.label,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 13.5,
-                            fontWeight: selected
-                                ? FontWeight.w600
-                                : FontWeight.w400,
-                            color: selected ? selectedColor : scheme.onSurface,
+        Builder(
+          builder: (context) {
+            final selected = current == section;
+            final item = Material(
+              color: selected
+                  ? safariChapColors.primaryColor!.withValues(alpha: 0.22)
+                  : Colors.transparent,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(10),
+                onTap: () {
+                  shell.select(section);
+                  if (inDrawer) Navigator.of(context).pop();
+                },
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: extended ? 12 : 0,
+                    vertical: 10,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: extended
+                        ? MainAxisAlignment.start
+                        : MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        section.icon,
+                        size: 20,
+                        color: selected
+                            ? selectedColor
+                            : scheme.onSurfaceVariant,
+                      ),
+                      if (extended) ...[
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            section.label,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 13.5,
+                              fontWeight: selected
+                                  ? FontWeight.w600
+                                  : FontWeight.w400,
+                              color: selected
+                                  ? selectedColor
+                                  : scheme.onSurface,
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
               ),
-            ),
-          );
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 1),
-            // Collapsed rail shows icons only, so name the section on hover.
-            child: extended
-                ? item
-                : Tooltip(message: section.label, child: item),
-          );
-        }),
+            );
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 1),
+              // Collapsed rail shows icons only, so name the section on hover.
+              child: extended
+                  ? item
+                  : Tooltip(message: section.label, child: item),
+            );
+          },
+        ),
       );
     }
 
@@ -249,11 +257,11 @@ class _SideNav extends StatelessWidget {
 
 class _TopBar extends StatelessWidget {
   final bool showMenu;
-  const _TopBar({required this.showMenu});
+  final String title;
+  const _TopBar({required this.showMenu, required this.title});
 
   @override
   Widget build(BuildContext context) {
-    final ShellController shell = Get.find();
     final SessionController session = Get.find();
     final ThemeManager themeManager = sl();
     final LocaleManager localeManager = sl();
@@ -272,14 +280,9 @@ class _TopBar extends StatelessWidget {
                 onPressed: () => Scaffold.of(context).openDrawer(),
               ),
             const SizedBox(width: 8),
-            Obx(
-              () => Text(
-                shell.section.value.label,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+            Text(
+              title,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             const Spacer(),
             PopupMenuButton<Locale>(

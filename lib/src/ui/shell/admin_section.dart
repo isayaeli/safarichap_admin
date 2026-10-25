@@ -65,4 +65,32 @@ enum AdminSection {
 
   String get label => _label.tr;
   String get group => _group.tr;
+
+  /// The list page's URL; detail pages live under it (`/customers/<uuid>`).
+  String get path => switch (this) {
+    overview => '/overview',
+    users => '/customers',
+    kyc => '/kyc',
+    goals => '/goals',
+    payments => '/payments',
+    refunds => '/refunds',
+    bookings => '/bookings',
+    itineraries => '/trips',
+    operators => '/operators',
+    destinations => '/destinations',
+    refundPolicies => '/refund-policies',
+    notifications => '/notifications',
+    fx => '/fx',
+    settings => '/settings',
+    staff => '/staff',
+    roles => '/roles',
+    audit => '/audit',
+  };
+
+  /// The section a URL belongs to, by its first segment; null outside the shell.
+  static AdminSection? fromLocation(String location) {
+    final first = Uri.parse(location).pathSegments.firstOrNull;
+    if (first == null) return null;
+    return values.firstWhereOrNull((s) => s.path == '/$first');
+  }
 }

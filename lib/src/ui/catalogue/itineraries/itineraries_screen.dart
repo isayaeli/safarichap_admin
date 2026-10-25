@@ -13,9 +13,9 @@ import 'package:safarichap_admin/src/data/models/enums.dart';
 import 'package:safarichap_admin/src/data/repositories/catalogue_repository.dart';
 import 'package:safarichap_admin/src/st/st.dart';
 import 'package:safarichap_admin/src/ui/shell/shell_controller.dart';
+import 'package:safarichap_admin/src/routes/app_routes.dart';
 
 import '../catalogue_controller.dart';
-import 'itinerary_form_screen.dart';
 
 class ItinerariesScreen extends StatefulWidget {
   const ItinerariesScreen({super.key});
@@ -44,7 +44,7 @@ class _ItinerariesScreenState extends State<ItinerariesScreen> {
   }
 
   Future<void> _open([String? uuid]) async {
-    await _shell.open(ItineraryFormScreen(uuid: uuid));
+    await _shell.open(uuid == null ? AppRoutes.newTrip : AppRoutes.trip(uuid));
     _controller.load();
   }
 

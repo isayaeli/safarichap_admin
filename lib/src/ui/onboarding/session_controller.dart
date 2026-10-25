@@ -1,13 +1,18 @@
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:safarichap_admin/src/core/utils/extensions.dart';
 import 'package:safarichap_admin/src/data/models/result.dart';
 import 'package:safarichap_admin/src/data/models/staff/staff.dart';
 import 'package:safarichap_admin/src/data/repositories/access_repository.dart';
 import 'package:safarichap_admin/src/data/repositories/auth_repository.dart';
-import 'package:safarichap_admin/src/ui/authentication/sign_in/signin_screen.dart';
 
 /// The signed-in staff member and their permission codes. The API enforces
 /// every permission; [can] only decides what the dashboard shows.
+///
+/// The router redirects on [routerRefresh], which fires on sign-in/out and
+/// whenever the staff profile loads or fails.
 class SessionController extends GetxController {
   final AuthRepository _authRepository;
   final AccessRepository _accessRepository;
@@ -20,6 +25,9 @@ class SessionController extends GetxController {
   final noAccess = false.obs;
   final loadFailed = false.obs;
 
+  final routerRefresh = _RouterRefresh();
+  StreamSubscription<bool>? _authChanges;
+
   bool get isSignedIn => _authRepository.isSignedIn;
   String? get email => _authRepository.email;
 
@@ -28,6 +36,28 @@ class SessionController extends GetxController {
   bool can(String code) => _codes.contains(code);
 
   bool canAny(Iterable<String> codes) => codes.any(_codes.contains);
+
+  @override
+  void onInit() {
+    everAll([me, noAccess, loadFailed], (_) => routerRefresh.notify());
+    _authChanges = _authRepository.signedInChanges.listen((signedIn) {
+      if (signedIn) {
+        if (me.value == null && !isLoading.value) loadMe();
+      } else {
+        _clear();
+      }
+      routerRefresh.notify();
+    });
+    if (isSignedIn) loadMe();
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    _authChanges?.cancel();
+    routerRefresh.dispose();
+    super.onClose();
+  }
 
   Future<void> loadMe() async {
     loadFailed.value = false;
@@ -46,10 +76,19 @@ class SessionController extends GetxController {
     });
   }
 
+  /// The router sends the user to sign-in once [me] clears.
   Future<void> signOut() async {
     await _authRepository.signOut();
+    _clear();
+  }
+
+  void _clear() {
     me.value = null;
     noAccess.value = false;
-    Get.offAll(() => const SignInScreen());
+    loadFailed.value = false;
   }
+}
+
+class _RouterRefresh extends ChangeNotifier {
+  void notify() => notifyListeners();
 }

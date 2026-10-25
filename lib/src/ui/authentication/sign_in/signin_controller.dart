@@ -3,7 +3,6 @@ import 'package:safarichap_admin/src/core/utils/error_snack.dart';
 import 'package:safarichap_admin/src/core/utils/extensions.dart';
 import 'package:safarichap_admin/src/data/models/result.dart';
 import 'package:safarichap_admin/src/data/repositories/auth_repository.dart';
-import 'package:safarichap_admin/src/ui/onboarding/decision_tree.dart';
 import 'package:safarichap_admin/src/ui/onboarding/session_controller.dart';
 import 'package:safarichap_admin/src/core/utils/navigation.dart';
 
@@ -19,8 +18,8 @@ class SignInController extends GetxController {
     await _authRepo.signInWithEmail(email, password).execute((result) async {
       isSigningIn.value = result is Loading;
       if (result is Success) {
+        // The router leaves sign-in once the staff profile loads.
         await _session.loadMe();
-        Get.offAll(() => const DecisionTree());
       } else if (result is Fail) {
         showErrorSnack(result.message);
       }

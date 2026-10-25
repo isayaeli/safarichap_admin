@@ -8,8 +8,8 @@ import 'package:safarichap_admin/src/data/models/booking/booking.dart';
 import 'package:safarichap_admin/src/data/models/enums.dart';
 import 'package:safarichap_admin/src/st/st.dart';
 import 'package:safarichap_admin/src/ui/shell/shell_controller.dart';
+import 'package:safarichap_admin/src/routes/app_routes.dart';
 
-import 'booking_details_screen.dart';
 import 'bookings_controller.dart';
 
 class BookingsScreen extends StatefulWidget {
@@ -38,7 +38,7 @@ class _BookingsScreenState extends State<BookingsScreen> {
         searchHint: 'Code, trip or customer',
         emptyMessage: 'No bookings match',
         onTap: (b) async {
-          await _shell.open(BookingDetailsScreen(uuid: b.uuid));
+          await _shell.open(AppRoutes.booking(b.uuid));
           _controller.load();
         },
         filters: [

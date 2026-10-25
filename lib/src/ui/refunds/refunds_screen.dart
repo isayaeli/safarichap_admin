@@ -9,8 +9,8 @@ import 'package:safarichap_admin/src/core/utils/time_util.dart';
 import 'package:safarichap_admin/src/data/models/enums.dart';
 import 'package:safarichap_admin/src/data/models/payment/payment.dart';
 import 'package:safarichap_admin/src/st/st.dart';
-import 'package:safarichap_admin/src/ui/goals/goal_details_screen.dart';
 import 'package:safarichap_admin/src/ui/shell/shell_controller.dart';
+import 'package:safarichap_admin/src/routes/app_routes.dart';
 
 import 'refunds_controller.dart';
 
@@ -67,7 +67,7 @@ class _RefundsScreenState extends State<RefundsScreen> {
         searchHint: 'Reference, phone, customer or goal',
         emptyMessage: 'No refunds match',
         minWidth: 740,
-        onTap: (r) => _shell.open(GoalDetailsScreen(uuid: r.goal_uuid)),
+        onTap: (r) => _shell.open(AppRoutes.goal(r.goal_uuid)),
         filters: [
           FilterDropdown<String>(
             label: 'Status',
