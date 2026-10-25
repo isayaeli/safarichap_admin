@@ -16,6 +16,8 @@ import 'package:safarichap_admin/src/data/repositories/access_repository.dart';
 import 'package:safarichap_admin/src/data/repositories/auth_repository.dart';
 import 'package:safarichap_admin/src/routes/app_router.dart';
 import 'package:safarichap_admin/src/routes/app_routes.dart';
+import 'package:safarichap_admin/src/core/utils/navigation.dart';
+import 'package:safarichap_admin/src/ui/users/widgets/edit_user_dialog.dart';
 import 'package:safarichap_admin/src/ui/authentication/sign_in/signin_screen.dart';
 import 'package:safarichap_admin/src/st/st.dart';
 import 'package:safarichap_admin/src/ui/onboarding/session_controller.dart';
@@ -169,6 +171,43 @@ void main() {
     await _settle(tester);
     expect(find.byIcon(Icons.menu), findsOneWidget);
     expect(tester.takeException(), isNull);
+  });
+
+  // Regression (#4): under the router, Get.isDialogOpen stayed false, so
+  // closeDialog() did nothing and dialogs ignored Save and Cancel.
+  group('dialogs in the routed app', () {
+    testWidgets('Cancel closes the edit-customer dialog', (tester) async {
+      final uuid = _fixture('user_detail')['uuid'] as String;
+      await pumpApp(tester, location: AppRoutes.customer(uuid));
+      await tester.tap(find.text('Edit'));
+      await _settle(tester);
+      expect(find.byType(EditUserDialog), findsOneWidget);
+
+      await tester.tap(find.text('Cancel'));
+      await _settle(tester);
+      expect(find.byType(EditUserDialog), findsNothing);
+      expect(find.byType(UserDetailsScreen), findsOneWidget);
+    });
+
+    testWidgets('closeDialog returns a result and leaves the page', (
+      tester,
+    ) async {
+      final router = await pumpApp(tester, location: '/goals');
+      String? result;
+      Get.dialog<String>(
+        const AlertDialog(title: Text('Reason')),
+      ).then((r) => result = r);
+      await _settle(tester);
+
+      closeDialog('done');
+      await _settle(tester);
+      expect(result, 'done');
+      expect(find.text('Reason'), findsNothing);
+
+      closeDialog(); // nothing open: must not pop the page
+      await _settle(tester);
+      expect(urlOf(router), '/goals');
+    });
   });
 
   group('routing', () {

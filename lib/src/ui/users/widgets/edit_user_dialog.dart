@@ -75,6 +75,8 @@ class _EditUserDialogState extends State<EditUserDialog> {
                 children: [
                   Expanded(
                     child: DropdownButtonFormField<Residency>(
+                      isExpanded:
+                          true, // long labels ellipsize instead of overflowing
                       initialValue: _residency,
                       decoration: InputDecoration(labelText: "Residency".tr),
                       items: [
@@ -87,6 +89,8 @@ class _EditUserDialogState extends State<EditUserDialog> {
                   const SizedBox(width: 12),
                   Expanded(
                     child: DropdownButtonFormField<String>(
+                      isExpanded:
+                          true, // long labels ellipsize instead of overflowing
                       initialValue: _currency,
                       decoration: InputDecoration(labelText: "Currency".tr),
                       items: [
